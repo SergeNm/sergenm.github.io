@@ -1,0 +1,308 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,600;1,400&display=swap");
+body {
+  font: 15px/2 "Poppins", sans-serif;
+  font-weight: 200;
+  padding: 0;
+  margin: 0;
+  background-image: url("../images/background.svg");
+  background-repeat: repeat;
+  background-size: 100%;
+  background-color: #495867;
+  color: #fff;
+}
+
+/* GLOBAL and Landing Page*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+#introduction, #blogs, #contact, #sign-in, #admin{
+    padding-top: 150px;
+    padding-bottom: 50px;
+}
+
+/* LANDING PAGE - */
+.container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 2em;
+  padding: 0;
+  margin: 0;
+}
+
+h2 {
+  font-weight: 400;
+  font-size: 1.5em;
+  margin: 0;
+}
+h3 {
+  font-weight: 200;
+}
+
+button, input[type="submit"] {
+    font-size: 1.5rem;
+    padding: 0.3vw 2vw 0.3vw 2vw;
+    margin-top: 6%;
+    background-color: #91e5f6;
+    border: none;
+    border-radius: 5%;
+  }
+  button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+textarea{
+    width: 100%;
+    min-height: 100px;
+}
+
+.info-light {
+  color: #91e5f6;
+}
+
+.box {
+  border: #91e5f6 1px solid;
+  border-radius: 5%;
+  box-shadow: 0px 5px 3px 3px #91e5f6;
+}
+/* #introduction{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+} */
+
+/*BLOG PAGE */
+.article-image {
+  width: 100%;
+  height: 150px;
+  min-width: 100px;
+  object-fit: cover;
+}
+#blogs {
+  background-color: #322d3f;
+}
+.blog {
+  padding: 2em;
+}
+
+.blog-header {
+  padding: 0 2em 0 2em;
+}
+
+.blog-content {
+  margin-bottom: 50px;
+}
+#sort-by {
+  padding-top: -50px;
+  float: right;
+}
+input[type="text"], input[type="password"] {
+  min-width: 160px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+ 
+  padding: 5px 10px 5px 40px;
+  transition: width 0.4s ease-in-out;
+}
+.search{
+    background-image: url("../images/search.png");
+    background-position: 2px 2px;
+    background-repeat: no-repeat;
+}
+
+input[type="text"]:focus {
+  width: 100%;
+}
+
+select{
+    width: 130px;
+    
+}
+
+/* CONTACT PAGE */
+
+#contact {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* SIGN IN PAGE */
+
+img.avatar {
+    width: 30%;
+    border-radius: 50%;
+  }
+  #sign-in{
+    display: flex;
+    justify-content: space-around;
+  }
+  .login-form-container form{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      margin-top: 3rem;
+      
+  }
+
+  .login-form-container label, .login-form-container input{
+      align-self: flex-start;
+      width: 100%;
+  }
+  .sign-with{
+      padding-top: 20px;
+      border-bottom: 2px solid #91e5f6;
+  }
+  .sign-with:hover{
+      opacity: 0.7;
+      cursor: pointer;
+      color: #91e5f6;
+  }
+
+  /* ADMIN PAGE */
+
+  #admin{
+      display: flex;
+      flex-direction: column;
+  }
+
+  .box-container{
+      min-width: 200px;
+      max-width: 300px;
+      min-height: 150px;
+      margin: auto;
+  }
+
+  .box-container img{
+      width: 80%;
+  }
+
+  .box-container div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 10%;
+      background-color: #322d3f;
+      padding: 1em;
+  }
+
+
+
+
+
+/* HEADER */
+
+header {
+  min-height: 100px;
+  color: #91e5f6;
+  background-color: #495867;
+  position: fixed;
+  width: 100%;
+}
+
+header a {
+  color: #91e5f6;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+header li {
+  display: inline;
+  float: left;
+  padding: 0 1em 0 1em;
+}
+
+.active {
+  color: #fff;
+}
+
+/* FOOTER */
+
+footer {
+  background-color: rgba(28, 1, 24, 0.17);
+
+  width: 100%;
+}
+
+.social-icon {
+  width: 2em;
+}
+
+.icon-container {
+  background-color: #c4c4c4;
+  border-radius: 50%;
+  padding: 5px 10px 5px 10px;
+  margin: auto;
+}
+
+.social-icons {
+  padding: 2em;
+  display: flex;
+}
+
+.info-light a {
+  color: #91e5f6;
+}
+
+/* MEDIA QUERRIES */
+
+@media (min-width: 600px) {
+  /*  GLOBAL 
+        & Landing Page
+    */
+  body {
+    font-size: 1.3rem;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+  }
+  nav {
+    align-self: center;
+  }
+  #introduction {
+    display: flex;
+  }
+  #introduction article {
+    width: 50%;
+  }
+
+  /* Blog Page */
+  .blog {
+    padding: 3em;
+  }
+  input[type="text"]:focus {
+    width: 40%;
+  }
+
+  /* Contact Page */
+  #contact{
+      flex-direction: row;
+  }
+  .right-c, .left-c{
+      width: 50%;
+  }
+
+  /* ADMIN PAGE */
+  #admin{
+      flex-direction: row;
+  }
+}
