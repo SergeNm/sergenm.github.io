@@ -23,6 +23,47 @@ body {
     padding-bottom: 50px;
 }
 
+input[type="text"], input[type="password"] {
+  min-width: 160px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+ 
+  padding: 5px 10px 5px 40px;
+  transition: width 0.4s ease-in-out;
+}
+
+button, input[type="submit"] {
+  font-size: 1.5rem;
+  padding: 0.3vw 2vw 0.3vw 2vw;
+  margin-top: 6%;
+  background-color: #91e5f6;
+  border: none;
+  border-radius: 5%;
+}
+button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+textarea{
+  width: 100%;
+  min-height: 100px;
+}
+
+.info-light {
+color: #91e5f6;
+}
+
+.box {
+border: #91e5f6 1px solid;
+border-radius: 5%;
+box-shadow: 0px 5px 3px 3px #91e5f6;
+}
+
+
 /* LANDING PAGE - */
 .container {
   width: 80%;
@@ -51,33 +92,10 @@ h3 {
   font-weight: 200;
 }
 
-button, input[type="submit"] {
-    font-size: 1.5rem;
-    padding: 0.3vw 2vw 0.3vw 2vw;
-    margin-top: 6%;
-    background-color: #91e5f6;
-    border: none;
-    border-radius: 5%;
-  }
-  button:hover {
-    opacity: 0.8;
-    cursor: pointer;
-  }
-
-textarea{
-    width: 100%;
-    min-height: 100px;
+#introduction article{
+  padding: 0 1em;
 }
 
-.info-light {
-  color: #91e5f6;
-}
-
-.box {
-  border: #91e5f6 1px solid;
-  border-radius: 5%;
-  box-shadow: 0px 5px 3px 3px #91e5f6;
-}
 /* #introduction{
     display: flex;
     justify-content: space-between;
@@ -109,17 +127,7 @@ textarea{
   padding-top: -50px;
   float: right;
 }
-input[type="text"], input[type="password"] {
-  min-width: 160px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: white;
- 
-  padding: 5px 10px 5px 40px;
-  transition: width 0.4s ease-in-out;
-}
+
 .search{
     background-image: url("../images/search.png");
     background-position: 2px 2px;
