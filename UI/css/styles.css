@@ -18,7 +18,7 @@ body {
   box-sizing: border-box;
 }
 
-#introduction, #blogs, #contact, #sign-in, #admin, #profile{
+#introduction, #blogs, #contact, #sign-in, #admin, #profile, #inbox{
     padding-top: 150px;
     padding-bottom: 50px;
 }
@@ -43,7 +43,7 @@ button, input[type="submit"] {
   border: none;
   border-radius: 5%;
 }
-button:hover {
+button:hover, a:hover {
   opacity: 0.8;
   cursor: pointer;
 }
@@ -224,6 +224,47 @@ img.avatar {
   .change-pic{
     color: #91e5f6;
   }
+
+  /* INBOX PAGE */
+  
+  .inbox-container{
+    background-color: rgba(28, 1, 24, 0.17);
+    padding: 2em;
+  }
+
+  .message-body{
+    background-color: rgba(196, 196, 196, 0.1);
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .inbox-container hr{
+    margin-bottom: 1rem;
+  }
+
+  .sender{
+    color: #FFD1A9;
+  }
+  
+  .message-body a{
+    margin-right: 15px;
+    text-decoration: none;
+    color: #FFD1A9;
+    
+  }
+
+  .date-time{
+    font-size: 0.6em;
+    margin-left: 2%;
+    margin-right: 2%;
+    font-weight: 400;
+
+  }
+
+
 
 
 /* HEADER */
