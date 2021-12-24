@@ -234,11 +234,17 @@ img.avatar {
 
   .message-body{
     background-color: rgba(196, 196, 196, 0.1);
+    width: 100%;
     margin-bottom: 1rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
+  }
+  .messages{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .inbox-container hr{
@@ -246,7 +252,8 @@ img.avatar {
   }
 
   .sender{
-    color: #FFD1A9;
+    font-size: larger;
+    font-weight: 600;
   }
   
   .message-body a{
@@ -317,9 +324,6 @@ footer {
   display: flex;
 }
 
-.info-light a {
-  color: #91e5f6;
-}
 
 /* MEDIA QUERRIES */
 
