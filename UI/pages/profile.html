@@ -21,7 +21,7 @@
             <nav>
                 <ul>
                     <li><a href="/index.html"> About </a></li>
-                    <li><a href="../pages/blog.html" > Blog </a></li>
+                    <li><a href="../pages/blog.html"> Blog </a></li>
                     <li><a href="../pages/contact.html" class="button-nav"> Contact </a></li>
                     <li href="#" class="login-btn">
                         <a href="#" class="active" onclick="document.getElementById('id01').style.display='block'">
@@ -35,14 +35,20 @@
 
     <section id="profile" class="container">
         <div class="profile-container">
+
                 <img src="../images/login-security.svg" alt="Login" class="avatar" />
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" value="Serge Nm" />
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required />
-                <button class="btn-login" type="submit">Login</button>
-                <span class="sign-with"> <img src="../images/google.svg"> CONTINUE WITH GOOGLE </span>
-          
+                <a class="change-pic" href="#">Change Picture</a>
+            <div>
+                <label for="fname"><b>First Name</b></label><br>
+                <input type="text" value="Serge" name="fname" /><br>
+                <label for="lname"><b>Last Name</b></label><br>
+                <input type="text" name="lname" value="Serge Nm" /><br>
+                <label for="address"><b>Adress</b></label><br>
+                <input type="text" name="address" value="Kicukiro" /><br><br>
+                <label for="address"><b>Tel No.</b></label>
+                <input type="number" name="tel" value="0789858453" /><br>
+                <button class="btn-login" type="submit">Update</button><br>
+            </div>
         </div>
     </section>
 
