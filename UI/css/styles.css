@@ -9,6 +9,9 @@ body {
   background-size: 100%;
   background-color: #495867;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  
 }
 
 /* GLOBAL and Landing Page*/
@@ -71,7 +74,7 @@ button a{
 
 /* LANDING PAGE - */
 .container {
-  width: 80%;
+  width: 90%;
   margin: auto;
   overflow: hidden;
 }
@@ -260,6 +263,7 @@ img.avatar {
     margin-right: 15px;
     text-decoration: none;
     color: #FFD1A9;
+    font-weight: 400;
     
   }
 
@@ -303,25 +307,28 @@ header li {
 /* FOOTER */
 
 footer {
-  background-color: rgba(28, 1, 24, 0.17);
-
+  background-color: rgba(28, 1, 24, 0.8);
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  
 }
 
 .social-icon {
   width: 2em;
+  padding: 0.4em;
 }
 
-.icon-container {
-  background-color: #c4c4c4;
-  border-radius: 50%;
-  padding: 5px 10px 5px 10px;
-  margin: auto;
+.phone-call a{
+  color: #91e5f6;
 }
 
 .social-icons {
   padding: 2em;
   display: flex;
+  
 }
 
 
