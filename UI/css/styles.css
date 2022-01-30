@@ -21,8 +21,8 @@ body {
   box-sizing: border-box;
 }
 
-#introduction, #blogs, #contact, #sign-in, #admin, #profile, #inbox{
-    padding-top: 150px;
+#introduction, #blogs, #contact, #sign-in, #admin, #profile, #inbox, #article{
+    padding-top: 140px;
     padding-bottom: 50px;
 }
 
@@ -191,6 +191,38 @@ select{
   flex-direction: row;
   justify-content: space-around;
 }
+/* .article-footer{
+  border-top: 0.5px solid #91e5f6;
+} */
+
+/* ARTICLE PAGE */
+
+.article-content{
+  padding: 2em;
+  padding-top: 0;
+  width: 100%;
+  margin: auto;
+}
+
+.article-cover{
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  padding-top: 20px;
+}
+
+.posted-date{
+  font-size: 0.7em;
+  font-weight: 400;
+  color: #89DAFF;
+  
+}
+
+#article h3 a, #article h3 {
+  color: #FFD1A9;
+}
+
+
 
 /* CONTACT PAGE */
 
@@ -407,6 +439,13 @@ footer {
   .grid-container{
     grid-template-columns: auto auto auto;
   }
+
+  /* Article Page */
+  .article-content{
+    width:70%;
+  }
+
+
 
   /* Contact Page */
   #contact{
