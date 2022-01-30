@@ -28,6 +28,8 @@ body {
 
 input[type="text"], input[type="password"] {
   min-width: 160px;
+  height: 2.5em;
+  width: 100%;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
@@ -140,9 +142,9 @@ h3 {
     background-repeat: no-repeat;
 }
 
-input[type="text"]:focus {
+/* input[type="text"]:focus {
   width: 100%;
-}
+} */
 
 select{
     width: 130px;
@@ -380,9 +382,9 @@ footer {
   .blog {
     padding: 3em;
   }
-  input[type="text"]:focus {
+  /* input[type="text"]:focus {
     width: 40%;
-  }
+  } */
 
   .grid-container{
     grid-template-columns: auto auto auto;
@@ -391,6 +393,7 @@ footer {
   /* Contact Page */
   #contact{
       flex-direction: row;
+      justify-content: center;
   }
   .right-c, .left-c{
       width: 50%;
