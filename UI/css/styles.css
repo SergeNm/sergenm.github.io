@@ -21,7 +21,7 @@ body {
   box-sizing: border-box;
 }
 
-#introduction, #blogs, #contact, #sign-in, #admin, #profile, #inbox, #article{
+#introduction, #blogs, #contact, #sign-in, #admin, #profile, #inbox, #article, #manage-article{
     padding-top: 140px;
     padding-bottom: 50px;
 }
@@ -178,6 +178,9 @@ select{
 }
 .middle-icon{
   width: 20px;
+}
+.large-icon{
+  width: 50px;
 }
 
 .article-link{
@@ -348,7 +351,13 @@ img.avatar {
 
   }
 
-
+  /* MANAGE-ARTICLE PAGE */
+  #new-article-link{
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #F7D4BC;
+    font-weight: 400;
+  }
 
 
 /* HEADER */
