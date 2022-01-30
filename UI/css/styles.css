@@ -169,9 +169,27 @@ select{
 }
 .grid-item h4{
   font-size: .7em;
+  color: #F7D4BC;
 }
 .grid-item p{
   font-size: .6em;
+  color: #E5E5E5;
+  font-weight: 300;
+}
+.middle-icon{
+  width: 20px;
+}
+
+.article-link{
+  font-size: 0.6em;
+  color: #F7D4BC;
+  text-decoration: none;
+  font-weight: 400;
+}
+.article-footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 /* CONTACT PAGE */

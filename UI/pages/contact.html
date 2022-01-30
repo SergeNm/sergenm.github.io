@@ -46,10 +46,11 @@
         <div >
             <span class="title2">Fot more info please don’t hestate to send me message</span>
            
-                <form action="index.html">
+                <form action="index.html" name="contactForm" onsubmit="return validateName()">
                     <div class="row">
-                        <label for="fname">Name</label><br>
-                        <input type="text" id="name" name="name" placeholder="Your name..">
+                        <label for="name">Name</label><br>
+                        <input type="text" id="name" name="name" placeholder="Your name.." required>
+                        <span class="error" id="name-error"> </span>
                     </div>
                     <div class="row">
                         <label for="email">Email</label><br>
@@ -58,8 +59,7 @@
                     <div >
                         <div class="row">
                             <label for="subject">Message</label><br>
-                            <textarea id="subject" name="subject" placeholder="Write your message.."
-                                ></textarea>
+                            <textarea id="subject" name="subject" placeholder="Write your message.." required></textarea>
                         </div>
         
                         <div class="row">
@@ -87,7 +87,7 @@
             </div>
       
     </footer>
-
+    <script src="../js/validation.js"></script>
 </body>
 
 </html>
