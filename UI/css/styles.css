@@ -21,8 +21,8 @@ body {
   box-sizing: border-box;
 }
 
-#introduction, #blogs, #contact, #sign-in, #admin, #profile, #inbox{
-    padding-top: 150px;
+#introduction, #blogs, #contact, #sign-in, #admin, #profile, #inbox, #article, #manage-article{
+    padding-top: 140px;
     padding-bottom: 50px;
 }
 
@@ -179,6 +179,9 @@ select{
 .middle-icon{
   width: 20px;
 }
+.large-icon{
+  width: 50px;
+}
 
 .article-link{
   font-size: 0.6em;
@@ -191,6 +194,38 @@ select{
   flex-direction: row;
   justify-content: space-around;
 }
+/* .article-footer{
+  border-top: 0.5px solid #91e5f6;
+} */
+
+/* ARTICLE PAGE */
+
+.article-content{
+  padding: 2em;
+  padding-top: 0;
+  width: 100%;
+  margin: auto;
+}
+
+.article-cover{
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  padding-top: 20px;
+}
+
+.posted-date{
+  font-size: 0.7em;
+  font-weight: 400;
+  color: #89DAFF;
+  
+}
+
+#article h3 a, #article h3 {
+  color: #FFD1A9;
+}
+
+
 
 /* CONTACT PAGE */
 
@@ -316,7 +351,13 @@ img.avatar {
 
   }
 
-
+  /* MANAGE-ARTICLE PAGE */
+  #new-article-link{
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #F7D4BC;
+    font-weight: 400;
+  }
 
 
 /* HEADER */
@@ -408,6 +449,13 @@ footer {
     grid-template-columns: auto auto auto;
   }
 
+  /* Article Page */
+  .article-content{
+    width:70%;
+  }
+
+
+
   /* Contact Page */
   #contact{
       flex-direction: row;
@@ -429,4 +477,60 @@ footer {
     align-items: center;
     width: 80%;
   }
+
+  /* MANAGE ARTICLE PAGE */
+ 
+  
+
+}
+
+
+
+
+
+
+
+
+/* MODAL FROM OTHER RESOURSE */
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #495867;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  padding: 2em;
+  
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #F7D4BC;
+  text-decoration: none;
+  cursor: pointer;
 }
