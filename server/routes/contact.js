@@ -2,6 +2,7 @@ const express = require('express');
 const contact = require('../models/Contact');
 const router = express.Router();
 const Contact = require('../models/Contact')
+const verify = require('./verifyToken')
 
 //Get all contacts
 router.get('/', async (req,res)=>{
@@ -14,7 +15,7 @@ router.get('/', async (req,res)=>{
 });
 
 // Add a contact
-router.post('/', async (req,res)=>{
+router.post('/', verify, async (req,res)=>{
     const contact = new Contact( {
         name: req.body.name,
         address: req.body.address,
@@ -43,7 +44,7 @@ router.get('/:contactId', async (req,res)=>{
 })
 
 //delete a specific contact
-router.delete('/:contactId', async (req,res)=>{
+router.delete('/:contactId', verify,async (req,res)=>{
     try{
         const removedContact = await Contact.deleteOne({_id:req.params.contactId})
         res.json(removedContact)

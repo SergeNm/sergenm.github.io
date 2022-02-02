@@ -6,11 +6,14 @@ const bodyParser = require('body-parser')
 
 //Import routes
 const contactRoute = require('./routes/contact');
+const authRoute = require('./routes/auth')
 
 //Middlewares
 app.use(bodyParser.json())
 
-app.use('/contact', contactRoute);
+//Router Middlewares
+app.use('/api/contact', contactRoute);
+app.use('/api/user', authRoute)
 
 
 // Routes
