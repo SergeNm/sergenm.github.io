@@ -1,21 +1,24 @@
-const express = require('express');
-const contact = require('../models/Contact');
-const router = express.Router();
-const Contact = require('../models/Contact')
-const verify = require('./verifyToken')
+import express from "express";
+import Contact from "../models/Contact";
+import { verifyUser } from "./verifyToken";
 
-//Get all contacts
-router.get('/', async (req,res)=>{
+
+const router = express.Router();
+
+//Get all Contacts
+router.get('/', async function (req, res) {
     try{
         const contacts = await Contact.find();
         res.json(contacts)
     }catch(err){
         res.json({message:err})
+        console.log(err)
     }
 });
 
+
 // Add a contact
-router.post('/', verify, async (req,res)=>{
+router.post('/', verifyUser, async (req,res)=>{
     const contact = new Contact( {
         name: req.body.name,
         address: req.body.address,
@@ -44,7 +47,7 @@ router.get('/:contactId', async (req,res)=>{
 })
 
 //delete a specific contact
-router.delete('/:contactId', verify,async (req,res)=>{
+router.delete('/:contactId', verifyUser,async (req,res)=>{
     try{
         const removedContact = await Contact.deleteOne({_id:req.params.contactId})
         res.json(removedContact)
@@ -68,4 +71,4 @@ router.patch('/:contactId', async (req,res)=>{
 })
 
 
-module.exports = router;
+export {router as contactRouter}

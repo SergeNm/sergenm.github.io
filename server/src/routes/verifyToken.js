@@ -1,6 +1,7 @@
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken'
 
- module.exports = function (req,res,next) {
+ export function verifyUser (req,res,next) {
      const token = req.header('auth-token');
      if(!token) return res.status(401).json(({message:"Access Denied"}));
 

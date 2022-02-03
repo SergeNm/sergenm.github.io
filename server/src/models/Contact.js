@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
 const ContactSchema = mongoose.Schema({
     name: {
@@ -17,5 +18,5 @@ const ContactSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Contact', ContactSchema);
+export default mongoose.model('Contact', ContactSchema);
 

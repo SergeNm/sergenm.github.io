@@ -1,8 +1,16 @@
-const router = require('express').Router();
-const User = require('../models/User');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const { registerValidation, loginValidation } = require('../validation');
+// // const router = require('express').Router();
+// // const User = require('../models/User');
+// // const jwt = require('jsonwebtoken');
+// // const bcrypt = require('bcryptjs');
+// // const { registerValidation, loginValidation } = require('../validation');
+
+import express from 'express'
+import User from '../models/User'
+import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
+import {registerValidation, loginValidation} from '../validation'
+
+const router = express.Router();
 
 //REGISTER NEW USER
 router.post('/register', async (req, res) => {
@@ -59,4 +67,5 @@ router.post('/login', async (req, res) => {
 
 })
 
-module.exports = router
+export {router as userRouter};
+
