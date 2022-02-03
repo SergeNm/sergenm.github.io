@@ -1,12 +1,8 @@
-import express from "express";
-import Contact from "../models/Contact";
-import { verifyUser } from "./verifyToken";
 
-
-const router = express.Router();
+import Contact from '../models/Contact'
 
 //Get all Contacts
-router.get('/', async function (req, res) {
+export const getAllContact = async function (req, res) {
     try{
         const contacts = await Contact.find();
         res.json(contacts)
@@ -14,11 +10,10 @@ router.get('/', async function (req, res) {
         res.json({message:err})
         console.log(err)
     }
-});
+}
 
-
-// Add a contact
-router.post('/', verifyUser, async (req,res)=>{
+//Add contact
+export const addOneContact = async (req,res)=>{
     const contact = new Contact( {
         name: req.body.name,
         address: req.body.address,
@@ -32,33 +27,31 @@ router.post('/', verifyUser, async (req,res)=>{
     } catch(err) {
         res.json({message: err})
     }
-    
-});
+}
 
-// Get a specific contact
-router.get('/:contactId', async (req,res)=>{
+//Get a specific contact
+export const getOneContact =  async (req,res)=>{
     try{
         const contact = await Contact.findById(req.params.contactId);
         res.json(contact)
     }catch(err){
         res.json({message:err})
-    }
-    
-})
+    } 
+}
+
 
 //delete a specific contact
-router.delete('/:contactId', verifyUser,async (req,res)=>{
+export const deleteOneContact = async (req,res)=>{
     try{
         const removedContact = await Contact.deleteOne({_id:req.params.contactId})
         res.json(removedContact)
     }catch(err){
         res.json({message:error})
     } 
-})
+}
 
-
-//update contact
-router.patch('/:contactId', verifyUser, async (req,res)=>{
+//update a specific contact
+export const updateOneContact = async (req,res)=>{
     try{
         const updatedContact = await Contact.updateOne(
             {_id:req.params.contactId}, 
@@ -68,7 +61,4 @@ router.patch('/:contactId', verifyUser, async (req,res)=>{
     }catch(err){
         res.json({message:error})
     } 
-})
-
-
-export {router as contactRouter}
+}
