@@ -1,20 +1,19 @@
 import express from 'express'
-import heroRoutes from './hero.routes.js'
+
 const router = express.Router()
 
 /**
  * @openapi
- * /healthcheck:
+ * /Home:
  *  get:
  *     tags:
- *     - Healthcheck
+ *     - Home
  *     description: Returns API operational status
  *     responses:
  *       200:
  *         description: API is  running
  */
-router.get('/healthcheck', (req, res) => res.sendStatus(200))
+router.get('/home', (req, res) => res.sendStatus(200))
 
-router.use(heroRoutes)
 
 export default router

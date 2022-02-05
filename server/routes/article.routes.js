@@ -1,11 +1,11 @@
 import express from "express";
 import { verifyUser } from "./verifyToken";
-import { getAllContact,
-         addOneContact, 
-         getOneContact,
-         deleteOneContact, 
-         updateOneContact
-        } from "../controllers/contact.controller";
+import { getAllArticles,
+         addOneArticle, 
+         deleteOneArticle,
+         updateOneArticle,
+         getOneArticle, 
+        } from "../controllers/article.controller";
 
 
 const router = express.Router();
@@ -14,11 +14,11 @@ const router = express.Router();
 
 /**
  * @openapi
- * '/api/contact':
+ * '/api/article':
  *  get:
  *     tags:
- *     - Contact
- *     summary: Get all Messages
+ *     - Article
+ *     summary: Get all Contacts
  *     responses:
  *       200:
  *         description: Success
@@ -31,29 +31,27 @@ const router = express.Router();
  *                properties:
  *                  id:
  *                    type: number
- *                  name:
+ *                  createdBy:
  *                    type: string
- *                  email:
+ *                  title:
  *                     type: string
- *                  address:
- *                      type: string
- *                  message:
+ *                  body:
  *                      type: string
  *       400:
  *         description: Bad request
  */
 
-router.get('/', getAllContact);
+router.get('/', getAllArticles);
 
 
 // Add a contact
 /**
  * @openapi
- * '/api/contact':
+ * '/api/article':
  *  post:
  *     tags:
- *     - Contact
- *     summary: Send a Message
+ *     - Article
+ *     summary: Add Article
  *     requestBody:
  *      required: true
  *      content:
@@ -61,15 +59,15 @@ router.get('/', getAllContact);
  *           schema:
  *            type: object
  *            required:
- *              - email
- *              - message
+ *              - title
+ *              - body
  *            properties:
- *              email:
+ *              title:
  *                type: string
- *                default: youremail
- *              name:
+ *                default: The tile of articlr
+ *              body:
  *                type: string
- *                default: Name
+ *                default: The body of article
  *     responses:
  *      201:
  *        description: Created
@@ -79,23 +77,20 @@ router.get('/', getAllContact);
  *        description: Not Found
  */
 
-router.post('/', verifyUser, addOneContact);
-
+router.post('/', verifyUser, addOneArticle);
 
 // Get a specific contact
-router.get('/:contactId', getOneContact)
-
 /**
  * @openapi
- * '/api/hero/{contactId}':
- *  delete:
+ * '/api/article/{articleId}':
+ *  get:
  *     tags:
- *     - Contact
- *     summary: Remove hero by id
+ *     - Article
+ *     summary: Get a specific article
  *     parameters:
- *      - name: contactId
+ *      - name: articleId
  *        in: path
- *        description: The unique id of the contact
+ *        description: The unique id of the article
  *        required: true
  *     responses:
  *      200:
@@ -105,16 +100,43 @@ router.get('/:contactId', getOneContact)
  *      404:
  *        description: Not Found
  */
-//delete a specific contact
-router.delete('/:contactId', verifyUser, deleteOneContact)
 
+
+router.get('/:articleId', getOneArticle)
+
+//delete a specific contact
+/**
+ * @openapi
+ * '/api/article/{articleId}':
+ *  delete:
+ *     tags:
+ *     - Article
+ *     summary: Delete a specific article
+ *     parameters:
+ *      - name: articleId
+ *        in: path
+ *        description: The unique id of the article
+ *        required: true
+ *     responses:
+ *      200:
+ *        description: Removed
+ *      400:
+ *        description: Bad request
+ *      404:
+ *        description: Not Found
+ */
+
+router.delete('/:articleId', verifyUser, deleteOneArticle)
+
+
+//update a specific contact
 /**
  * @openapi
  * '/api/contact/:contactId':
  *  patch:
  *     tags:
- *     - Contact
- *     summary: Modify a Message
+ *     - Article
+ *     summary: Modify an Article
  *     requestBody:
  *      required: true
  *      content:
@@ -122,19 +144,15 @@ router.delete('/:contactId', verifyUser, deleteOneContact)
  *           schema:
  *            type: object
  *            required:
- *              - email
- *              - message
- *              - id
+ *              - title
+ *              - body
  *            properties:
- *              id:
- *                type: number
- *                default: 1
- *              email:
+ *              title:
  *                type: string
- *                default: youremail
- *              message:
+ *                default: your title
+ *              body:
  *                type: string
- *                default: your message
+ *                default: your body
  *     responses:
  *      200:
  *        description: Modified
@@ -144,7 +162,8 @@ router.delete('/:contactId', verifyUser, deleteOneContact)
  *        description: Not Found
  */
 //update a specific contact
-router.patch('/:contactId', verifyUser, updateOneContact )
+router.patch('/:articleId', verifyUser, updateOneArticle )
 
 
-export {router as contactRouter}
+export {router as articleRouter}
+
