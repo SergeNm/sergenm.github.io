@@ -41,8 +41,7 @@ const tempArticle = {
             });
     })
 
-    it("should register new article with valid token", (done) => {
-        console.log('-----------------------------------------------', tempToken);
+    it("should post new article with valid token", (done) => {
       request(app)
         .post("/articles")
         .set({
@@ -57,34 +56,44 @@ const tempArticle = {
         .catch((err) => done(err));
     });
   
-    // it("shouldn't accept the username that already exists in the database", (done) => {
+    it("shouldn't post the article if token is not provided", (done) => {
+      request(app)
+        .post("/articles")
+        .send(tempArticle)
+        .expect(401)
+        .then((res) => {
+          expect(res.body.message).to.be.eql("Access token is missing");
+          done();
+        })
+        .catch((err) => done(err));
+    });
+  });
+
+//   Let's test the "Get" methods now
+describe("GET Articles", () => {
+    it("should return all articles", (done) => {
+      request(app)
+        .get("/articles")
+        .expect(200)
+        .then((res) => {
+          expect(res.body).to.be.an('array');
+          done();
+        })
+        .catch((err) => done(err));
+    });
+
+    // it("should return specific article", (done) => {
     //   request(app)
-    //     .post("/users/signup")
-    //     .send(tempUser)
-    //     .expect(400)
+    //     .get("/articles/:articleId")
+    //     .expect(200)
     //     .then((res) => {
-    //       expect(res.body.message).to.be.eql("Username is already in use");
+    //       expect(res.body).to.be.an('array');
     //       done();
     //     })
     //     .catch((err) => done(err));
     // });
-  });
 
-// //   Let's test the "PATCH" methods now
-// describe("PATCH users", () => {
-//     it("should accept correct credentials", (done) => {
-//       request(app)
-//         .patch("/users/login")
-//         .send(tempUser)
-//         .expect(200)
-//         .then((res) => {
-//           expect(res.body.message).to.be.eql("User logged in successfully");
-//           tempToken = `Bearer ${res.body.token}`;
-//           console.log("---------------------", tempToken)
-//           done();
-//         })
-//         .catch((err) => done(err));
-//     });
+  
   
 //     it("shouldn't accept invalid password", (done) => {
 //       tempUser.password = process.env.USER_TEST_PASSWORD + "asdf";
@@ -127,7 +136,7 @@ const tempArticle = {
 //         })
 //         .catch((err) => done(err));
 //     });
-//   });
+  });
 
 
 //   /**

@@ -2,7 +2,7 @@ import User from "../models/user.model.js";
 import hashPassword from "./helpers/hashPassword.js";
 import comparePasswords from "./helpers/comparePasswords.js";
 import generateJWT from '../middlewares/generateJWT.js'
-import { registerValidation, loginValidation } from '../middlewares/validation'
+import { registerValidation, loginValidation } from '../middlewares/joiValidation'
 
 
 class UsersController {

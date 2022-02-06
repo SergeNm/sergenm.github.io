@@ -6,6 +6,11 @@ import swaggerDocs from './swagger.js'
 import usersRouter from "./routes/usersRouter.js";
 import articlesRouter from "./routes/articlesRouter.js";
 import messagesRouter from "./routes/messagesRouter"
+import commentsRouter from "./routes/commentsRouter.js";
+import cors from 'cors'
+import bodyParser from 'body-parser'
+import router from './routes/routes'
+
 
 
 dotenv.config();
@@ -16,9 +21,9 @@ let database = process.env.NODE_ENV === 'dev' ? process.env.DB_URI
                                               : process.env.DB_URI_TEST;
 
 //Middlewares
-app.use(express.json());
-app.use(express.urlencoded());
-
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 
 //connect to database
@@ -40,6 +45,8 @@ app.use("/users", usersRouter)
 app.use("/", mainRouter)
 app.use("/articles", articlesRouter)
 app.use("/messages", messagesRouter)
+app.use("/api", router)
+app.use("/comments", commentsRouter)
 
 //start app
 app.listen(port, () => {

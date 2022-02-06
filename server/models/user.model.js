@@ -6,7 +6,10 @@ const userSchema = new Schema(
   {
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    accessToken: { type: String, default: null }
+    accessToken: { type: String, default: null },
+    comments: [
+      { type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }
+    ]
   },
   {
     timestamps: {
