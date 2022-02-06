@@ -1,24 +1,20 @@
 import express from "express";
-import { verifyUser } from "./verifyToken";
-import { getAllArticles,
-         addOneArticle, 
-         deleteOneArticle,
-         updateOneArticle,
-         getOneArticle, 
-        } from "../controllers/article.controller";
+import MessagesController from "../controllers/MessagesController";
+const messagesRouter = express.Router();
 
+import validateToken from "../middlewares/validateToken.js";
 
-const router = express.Router();
+const messages = new MessagesController();
 
-//Get all Contacts
+//Get all Messages
 
 /**
  * @openapi
- * '/api/article':
+ * '/messages':
  *  get:
  *     tags:
- *     - Article
- *     summary: Get all Contacts
+ *     - Messages
+ *     summary: Get all Messages
  *     responses:
  *       200:
  *         description: Success
@@ -41,17 +37,17 @@ const router = express.Router();
  *         description: Bad request
  */
 
-router.get('/', getAllArticles);
+messagesRouter.get('/', messages.getAllMessage);
 
 
 // Add a contact
 /**
  * @openapi
- * '/api/article':
+ * '/messages':
  *  post:
  *     tags:
- *     - Article
- *     summary: Add Article
+ *     - Messages
+ *     summary: Add Messages
  *     requestBody:
  *      required: true
  *      content:
@@ -77,18 +73,18 @@ router.get('/', getAllArticles);
  *        description: Not Found
  */
 
-router.post('/', verifyUser, addOneArticle);
+messagesRouter.post('/', validateToken, messages.addOneMessage);
 
 // Get a specific contact
 /**
  * @openapi
- * '/api/article/{articleId}':
+ * '/messages/{messageId}':
  *  get:
  *     tags:
- *     - Article
+ *     - Messages
  *     summary: Get a specific article
  *     parameters:
- *      - name: articleId
+ *      - name: messageId
  *        in: path
  *        description: The unique id of the article
  *        required: true
@@ -102,18 +98,18 @@ router.post('/', verifyUser, addOneArticle);
  */
 
 
-router.get('/:articleId', getOneArticle)
+messagesRouter.get('/:messageId', messages.getOneMessage)
 
 //delete a specific contact
 /**
  * @openapi
- * '/api/article/{articleId}':
+ * '/messages/{messageId}':
  *  delete:
  *     tags:
- *     - Article
+ *     - Messages
  *     summary: Delete a specific article
  *     parameters:
- *      - name: articleId
+ *      - name: messageId
  *        in: path
  *        description: The unique id of the article
  *        required: true
@@ -126,17 +122,17 @@ router.get('/:articleId', getOneArticle)
  *        description: Not Found
  */
 
-router.delete('/:articleId', verifyUser, deleteOneArticle)
+messagesRouter.delete('/:articleId', validateToken, messages.deleteOneMessage)
 
 
 //update a specific contact
 /**
  * @openapi
- * '/api/contact/:contactId':
+ * '/messages/:contactId':
  *  patch:
  *     tags:
- *     - Article
- *     summary: Modify an Article
+ *     - Messages
+ *     summary: Modify an Messages
  *     requestBody:
  *      required: true
  *      content:
@@ -162,8 +158,8 @@ router.delete('/:articleId', verifyUser, deleteOneArticle)
  *        description: Not Found
  */
 //update a specific contact
-router.patch('/:articleId', verifyUser, updateOneArticle )
+messagesRouter.patch('/:articleId', validateToken, messages.updateOneMessage )
 
 
-export {router as articleRouter}
+export default messagesRouter;
 

@@ -19,4 +19,3 @@ const ArticleSchema = mongoose.Schema({
 });
 
 export default mongoose.model('Article', ArticleSchema);
-
