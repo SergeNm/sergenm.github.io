@@ -16,7 +16,7 @@ import router from './routes/routes'
 dotenv.config();
 const app = express();
 
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 let database = process.env.NODE_ENV === 'dev' ? process.env.DB_URI
                                               : process.env.DB_URI_TEST;
 

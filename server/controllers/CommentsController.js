@@ -26,9 +26,10 @@ export default {
 
         return res.send(userById);
     },
-    userByComment : async (req,res)=>{
-        const { commentId } = req.params;
-        const userByComment = await Comment.findById(commentId).populate('user').populate('article');
-        res.send(userByComment);
+    commentByUser : async (req,res)=>{
+        const { userId } = req.params;
+        const userById = await User.findById(userId);
+        const commentByUser = await Comment.find({user:userId}); //.populate('user').populate('article')
+        res.send(commentByUser);
     }
 }

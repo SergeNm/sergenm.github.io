@@ -13,6 +13,7 @@ import CommentsController from '../controllers/CommentsController';
 // router.post('/user/find/post/:id', User.postsByUser);
 // post routes
 commentsRouter.post('/create/:id', CommentsController.create);
-commentsRouter.post('/populate/:id',CommentsController.userByComment);
+commentsRouter.get('/user/:userId',CommentsController.commentByUser);
+//commentsRouter.post('/article/:id',CommentsController.userByComment);
 
 export default commentsRouter;
