@@ -1,21 +1,41 @@
 {
-  "name": "server",
+  "name": "starter-node-es6",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "test": "SET NODE_ENV=testing && nyc --reporter=text mocha --recursive --exit --timeout 10000 --require @babel/register",
+    "start": "nodemon --exec babel-node app"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.17.0",
+    "@babel/core": "^7.6.0",
+    "@babel/node": "^7.6.1",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.17.0",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.2.0",
+    "nodemon": "^1.19.2",
+    "nyc": "^15.1.0",
+    "supertest": "^6.2.2"
+  },
   "dependencies": {
+    "@babel/runtime": "^7.17.0",
     "@hapi/joi": "^17.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.1",
-    "dotenv": "^15.0.0",
-    "express": "^4.17.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.1.9",
-    "nodemon": "^2.0.15"
+    "mongo-sanitize": "^1.1.0",
+    "mongoose": "^6.2.0",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.3.0"
   }
 }

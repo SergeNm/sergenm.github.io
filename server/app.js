@@ -1,31 +1,58 @@
-const express = require('express');
-const app = express();
-const mongoose = require('mongoose');
-require('dotenv/config');
-const bodyParser = require('body-parser')
+import express from "express";
+import dotenv from "dotenv";
+import mainRouter from "./routes/mainRouter.js";
+import mongoose from "mongoose";
+import swaggerDocs from './swagger.js'
+import usersRouter from "./routes/usersRouter.js";
+import articlesRouter from "./routes/articlesRouter.js";
+import messagesRouter from "./routes/messagesRouter"
+import commentsRouter from "./routes/commentsRouter.js";
+import cors from 'cors'
+import bodyParser from 'body-parser'
+import router from './routes/routes'
 
-//Import routes
-const contactRoute = require('./routes/contact');
-const authRoute = require('./routes/auth')
+
+
+dotenv.config();
+const app = express();
+
+const port = process.env.PORT;
+let database = process.env.NODE_ENV === 'dev' ? process.env.DB_URI
+                                              : process.env.DB_URI_TEST;
 
 //Middlewares
-app.use(bodyParser.json())
-
-//Router Middlewares
-app.use('/api/contact', contactRoute);
-app.use('/api/user', authRoute)
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 
-// Routes
-app.get('/', (req,res)=>{
-    res.send('Home')
-})
+//connect to database
+mongoose
+  .connect(database, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Database connection established");
+  })
+  .catch((err) => {
+    console.error(`ERROR: ${err}`);
+  });
 
 
-//Connect to database
-mongoose.connect(process.env.DB_CONNECTION)
-    .then(()=>console.log("connected to Db"))
-    .catch(e=>console.log(e))
+//Routes
+app.use("/users", usersRouter)
+app.use("/", mainRouter)
+app.use("/articles", articlesRouter)
+app.use("/messages", messagesRouter)
+app.use("/api", router)
+app.use("/comments", commentsRouter)
 
-//connect to server
-app.listen(3000);
+//start app
+app.listen(port, () => {
+  console.log(`Listening on port: ${port}`);
+  swaggerDocs(app, port)
+});
+
+
+export default app;
