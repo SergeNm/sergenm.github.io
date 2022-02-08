@@ -33,14 +33,14 @@ const tempArticle = {
 
   describe("POST Articles", () => {
     
-    before('Find user\'s token', (done) => {
-        User.findOne({ username: 'admin@gmail.com'})
-            .then((user) => {
-                tempToken = user.accessToken
-                done();
-            });
-    })
-
+    // before('Find user\'s token', (done) => {
+    //     User.findOne({ username: 'admin@gmail.com'})
+    //         .then((user) => {
+    //             tempToken = user.accessToken
+    //             done();
+    //         });
+    // })
+    
     it("should post new article with valid token", (done) => {
       request(app)
         .post("/articles")

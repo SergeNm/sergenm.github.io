@@ -9,7 +9,7 @@ export default {
 
         console.log(req.params);
         let user = req.params;
-        let userId = user.id;
+        let userId = user.userId;
 
         const { comment, articleId} = req.body;
         const comment_ = await Comment.create({

@@ -13,7 +13,7 @@ const articles = new ArticlesController();
  * '/articles':
  *  get:
  *     tags:
- *     - Article
+ *     - Articles
  *     summary: Get all Articles
  *     responses:
  *       200:
@@ -46,7 +46,7 @@ const articles = new ArticlesController();
   * '/articles':
   *  post:
   *     tags:
-  *     - Article
+  *     - Articles
   *     summary: Add Article
   *     requestBody:
   *      required: true
@@ -81,7 +81,7 @@ const articles = new ArticlesController();
   * '/articles/{articleId}':
   *  get:
   *     tags:
-  *     - Article
+  *     - Articles
   *     summary: Get a specific article
   *     parameters:
   *      - name: articleId
@@ -106,7 +106,7 @@ const articles = new ArticlesController();
   * '/articles/{articleId}':
   *  delete:
   *     tags:
-  *     - Article
+  *     - Articles
   *     summary: Delete a specific article
   *     parameters:
   *      - name: articleId
@@ -133,7 +133,7 @@ const articles = new ArticlesController();
   * '/articles/:articleId':
   *  patch:
   *     tags:
-  *     - Article
+  *     - Articles
   *     summary: Modify an Article
   *     parameters:
   *      - name: articleId
