@@ -1,0 +1,10 @@
+{
+    "environments": {
+      "test": {
+        "scripts": {
+          "test-setup": "npm install nyc mocha",
+          "test": "nyc --reporter=text mocha --recursive --exit --timeout 10000 --require @babel/register"
+        }
+      }
+    }
+}
