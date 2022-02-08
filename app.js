@@ -9,7 +9,7 @@ import messagesRouter from "./routes/messagesRouter"
 import commentsRouter from "./routes/commentsRouter.js";
 import cors from 'cors'
 import bodyParser from 'body-parser'
-
+import router from './routes/routes'
 
 
 
@@ -45,6 +45,7 @@ app.use("/users", usersRouter)
 app.use("/", mainRouter)
 app.use("/articles", articlesRouter)
 app.use("/messages", messagesRouter)
+app.use("/api", router)
 app.use("/comments", commentsRouter)
 
 //start app
