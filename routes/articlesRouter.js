@@ -60,7 +60,7 @@ const articles = new ArticlesController();
   *            properties:
   *              title:
   *                type: string
-  *                default: The tile of articlr
+  *                default: The tile of article
   *              body:
   *                type: string
   *                default: The body of article
