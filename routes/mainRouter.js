@@ -4,6 +4,6 @@ const mainRouter = express.Router();
 
 const mainController = new MainController();
 
-mainRouter.get("/", mainController.HelloWorld);
+mainRouter.get("/", mainController.home);
 
 export default mainRouter;
