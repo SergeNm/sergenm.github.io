@@ -1,26 +1,18 @@
 import express from 'express';
 
-const commentsRouter = new express.Router;
+const likesRouter = new express.Router;
 
 import User from '../controllers/UsersController'
-import CommentsController from '../controllers/CommentsController';
-// const User = require('./controllers/user/user');
-// const Post = require('./controllers/post/post');
-
-// user routes
-// router.post('/user/create',User.create);
-// router.post('/user/find',User.find);
-// router.post('/user/find/post/:id', User.postsByUser);
-// post routes
+import LikesController from '../controllers/LikesController';
 
 
 /**
   * @openapi
-  * '/comments/create/{userId}':
+  * '/likes/create/{userId}':
   *  post:
   *     tags:
-  *     - Comments
-  *     summary: Submit a comment by specific User for a specific Article
+  *     - Likes
+  *     summary: Submit a Like by specific User for a specific Article
   *     parameters:
   *      - name: userId
   *        in: path
@@ -33,12 +25,8 @@ import CommentsController from '../controllers/CommentsController';
   *         schema:
   *          type: object
   *          required:
-  *            - comment
   *            - articleId
   *          properties:
-  *            comment:
-  *             type: string
-  *             default: your comment
   *            articleId:
   *             type: string
   *     responses:
@@ -49,15 +37,15 @@ import CommentsController from '../controllers/CommentsController';
   *      404:
   *        description: Not Found
   */
-commentsRouter.post('/create/:userId', CommentsController.create);
+likesRouter.post('/create/:userId', LikesController.create);
 
 /**
   * @openapi
-  * '/comments/user/{userId}':
+  * '/likes/user/{userId}':
   *  get:
   *     tags:
-  *     - Comments
-  *     summary: Get all comments by specific user
+  *     - Likes
+  *     summary: Get all likes by specific user
   *     parameters:
   *      - name: userId
   *        in: path
@@ -71,15 +59,15 @@ commentsRouter.post('/create/:userId', CommentsController.create);
   *      404:
   *        description: Not Found
   */
-commentsRouter.get('/user/:userId',CommentsController.commentByUser);
-//commentsRouter.post('/article/:id',CommentsController.userByComment);
+likesRouter.get('/user/:userId',LikesController.likeByUser);
+//likesRouter.post('/article/:id',LikesController.userByComment);
 
 /**
   * @openapi
-  * '/comments/article/{articleId}':
+  * '/likes/article/{articleId}':
   *  get:
   *     tags:
-  *     - Comments
+  *     - Likes
   *     summary: Get all comments by specific Article
   *     parameters:
   *      - name: articleId
@@ -94,6 +82,6 @@ commentsRouter.get('/user/:userId',CommentsController.commentByUser);
   *      404:
   *        description: Not Found
   */
- commentsRouter.get('/article/:articleId',CommentsController.commentByArticle);
+ likesRouter.get('/article/:articleId',LikesController.likeByArticle);
 
-export default commentsRouter;
+export default likesRouter;
