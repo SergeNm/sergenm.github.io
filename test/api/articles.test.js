@@ -143,11 +143,11 @@ describe("GET Articles", (req, res) => {
 //    * After finishing the tests, we should get rid of the temporary user that we have created in our test database.
 //    */
 
-//   after(async () => {
-//     try {
-//       await User.deleteOne({ username: process.env.USER_TEST });
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   });
+  after(async () => {
+    try {
+      await Article.deleteMany({ title: tempArticle.title });
+    } catch (err) {
+      console.error(err);
+    }
+  });
 

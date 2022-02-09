@@ -31,7 +31,7 @@ before(function (done) {
 
 //we can add tests functions. Let's start with signing up new users:
 
-describe("POST Comments", (req, res) => {
+describe("CRUD Comments", (req, res) => {
 
     // before('Find user\'s token', (done) => {
     //     User.findOne({ username: 'admin@gmail.com'})
@@ -56,19 +56,38 @@ describe("POST Comments", (req, res) => {
             .catch((err) => done(err));
     });
 
-    // it("Should get all comments by specific user", (done) => {
-    //     request(app)
-    //         .get("/comments/user/"+ process.env.USER_ID)
-    //         .set({
-    //             Authorization: `Bearer ${process.env.TEMP_TOKEN}`,
-    //         })
-    //         .expect(200)
-    //         .then((res) => {
-    //             expect(res.body._id).to.be.eql(process.env.USER_ID);
-    //             done();
-    //         })
-    //         .catch((err) => done(err));
-    // });
+    it("Should get all comments by specific user", (done) => {
+        request(app)
+            .get("/comments/user/" + process.env.USER_ID)
+            .set({
+                Authorization: `Bearer ${process.env.TEMP_TOKEN}`,
+            })
+            .expect(200)
+            .then((res) => {
+                //expect(res.body._id).to.be.eql(process.env.USER_ID);
+                expect(res.body).to.be.an('array');
+                //console.log(res.body);
+                done();
+            })
+            .catch((err) => done(err));
+    });
+
+    it("Should get all comments by specific article", (done) => {
+        request(app)
+            .get("/comments/article/" + process.env.ARTICLE_ID)
+            .set({
+                Authorization: `Bearer ${process.env.TEMP_TOKEN}`,
+            })
+            .expect(200)
+            .then((res) => {
+                //expect(res.body._id).to.be.eql(process.env.USER_ID);
+                expect(res.body).to.be.an('array');
+                // console.log(res.body);
+                done();
+            })
+            .catch((err) => done(err));
+    });
+
 });
 
 
