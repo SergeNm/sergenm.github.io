@@ -45,7 +45,7 @@ const tempArticle = {
       request(app)
         .post("/articles")
         .set({
-            Authorization: `Bearer ${process.env.TEMP_TOKEN}`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY0NDMzNDc2Mn0.3tutNY_Qefk-6btiGQazuFVaQxn8tdeDFo4imdkJcAw`,
         })
         .send(tempArticle)
         .expect(200)
