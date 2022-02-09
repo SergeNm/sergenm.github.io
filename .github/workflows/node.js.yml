@@ -17,6 +17,8 @@ env:
   JWT_SECRET: "secret string"
   NODE_ENV: "testing"
   DB_URI_TEST: "mongodb+srv://sergenm:SergeNm25@cluster0.ctshy.mongodb.net/testing-db?retryWrites=true&w=majority"
+  USER_ID: "62028e925c0c3132e23a6a5b"
+  ARTICLE_ID: "62012f009f0c1d5474f5913c"
 
 jobs:
   build:
