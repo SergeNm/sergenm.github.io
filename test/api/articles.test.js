@@ -41,21 +41,7 @@ const tempArticle = {
     //         });
     // })
     
-   /* it("should post new article with valid token", (done) => {
-      request(app)
-        .post("/articles")
-        .set({
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY0NDMzNDc2Mn0.3tutNY_Qefk-6btiGQazuFVaQxn8tdeDFo4imdkJcAw`,
-        })
-        .send(tempArticle)
-        .expect(200)
-        .then((res) => {
-          expect(res.body.title).to.be.eql(tempArticle.title);
-          done();
-        })
-        .catch((err) => done(err));
-    }); */
-  
+   
     it("shouldn't post the article if token is not provided", (done) => {
       request(app)
         .post("/articles")
