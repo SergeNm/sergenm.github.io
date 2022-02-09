@@ -31,7 +31,7 @@ const tempArticle = {
 
   //we can add tests functions. Let's start with signing up new users:
 
-  describe("POST Articles", () => {
+  describe("POST Articles", (req, res) => {
     
     // before('Find user\'s token', (done) => {
     //     User.findOne({ username: 'admin@gmail.com'})
@@ -70,7 +70,7 @@ const tempArticle = {
   });
 
 //   Let's test the "Get" methods now
-describe("GET Articles", () => {
+describe("GET Articles", (req, res) => {
     it("should return all articles", (done) => {
       request(app)
         .get("/articles")
@@ -82,16 +82,16 @@ describe("GET Articles", () => {
         .catch((err) => done(err));
     });
 
-    // it("should return specific article", (done) => {
-    //   request(app)
-    //     .get("/articles/:articleId")
-    //     .expect(200)
-    //     .then((res) => {
-    //       expect(res.body).to.be.an('array');
-    //       done();
-    //     })
-    //     .catch((err) => done(err));
-    // });
+    it("should return specific article", (done) => {
+      request(app)
+        .get("/articles/62012f009f0c1d5474f5913c")
+        .expect(200)
+        .then((res) => {
+          expect(res.body).to.be.an('object').has.property("title").eql('The tile of articlr');
+          done();
+        })
+        .catch((err) => done(err));
+    });
 
   
   
