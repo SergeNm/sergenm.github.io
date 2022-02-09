@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "nyc --reporter=lcov --reporter=text-summary mocha --recursive --exit --timeout 10000 --require @babel/register",
+    "test": "nyc --reporter=lcov --reporter=text-summary mocha --recursive --exit --timeout 30000 --require @babel/register",
     "start": "nodemon --exec babel-node app"
   },
   "keywords": [],
