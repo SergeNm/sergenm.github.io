@@ -41,7 +41,21 @@ const tempArticle = {
     //         });
     // })
     
-   
+    it("should post new article with valid token", (done) => {
+      request(app)
+        .post("/articles")
+        .set({
+            Authorization: `Bearer ${process.env.TEMP_TOKEN}`,
+        })
+        .send(tempArticle)
+        .expect(200)
+        .then((res) => {
+          expect(res.body.title).to.be.eql(tempArticle.title);
+          done();
+        })
+        .catch((err) => done(err));
+    });
+  
     it("shouldn't post the article if token is not provided", (done) => {
       request(app)
         .post("/articles")
