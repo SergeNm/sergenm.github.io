@@ -113,8 +113,6 @@ const articles = new ArticlesController();
   *        in: path
   *        description: The unique id of the article
   *        required: true
-  *     security:
-  *     - Bearer : []
   *     responses:
   *      200:
   *        description: Removed
