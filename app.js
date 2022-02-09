@@ -10,7 +10,6 @@ import commentsRouter from "./routes/commentsRouter.js"
 import likesRouter from "./routes/likesRouter.js";
 import cors from 'cors'
 import bodyParser from 'body-parser'
-import router from './routes/routes'
 
 
 
@@ -46,7 +45,6 @@ app.use("/users", usersRouter)
 app.use("/", mainRouter)
 app.use("/articles", articlesRouter)
 app.use("/messages", messagesRouter)
-app.use("/api", router)
 app.use("/comments", commentsRouter)
 app.use("/likes", likesRouter)
 

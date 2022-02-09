@@ -87,7 +87,7 @@ describe("GET Articles", (req, res) => {
         .get("/articles/62012f009f0c1d5474f5913c")
         .expect(200)
         .then((res) => {
-          expect(res.body).to.be.an('object').has.property("title").eql('The tile of articlr');
+          expect(res.body).to.be.an('object').has.property("title").eql("The admin article");
           done();
         })
         .catch((err) => done(err));

@@ -1,4 +1,5 @@
 import express from 'express';
+import validateToken from "../middlewares/validateToken.js";
 
 const commentsRouter = new express.Router;
 
@@ -49,7 +50,7 @@ import CommentsController from '../controllers/CommentsController';
   *      404:
   *        description: Not Found
   */
-commentsRouter.post('/create/:userId', CommentsController.create);
+commentsRouter.post('/create/:userId', validateToken, CommentsController.create);
 
 /**
   * @openapi
@@ -71,7 +72,7 @@ commentsRouter.post('/create/:userId', CommentsController.create);
   *      404:
   *        description: Not Found
   */
-commentsRouter.get('/user/:userId',CommentsController.commentByUser);
+commentsRouter.get('/user/:userId', validateToken, CommentsController.commentByUser);
 //commentsRouter.post('/article/:id',CommentsController.userByComment);
 
 /**
@@ -94,6 +95,6 @@ commentsRouter.get('/user/:userId',CommentsController.commentByUser);
   *      404:
   *        description: Not Found
   */
- commentsRouter.get('/article/:articleId',CommentsController.commentByArticle);
+commentsRouter.get('/article/:articleId', CommentsController.commentByArticle);
 
 export default commentsRouter;
