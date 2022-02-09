@@ -9,6 +9,9 @@ const userSchema = new Schema(
     accessToken: { type: String, default: null },
     comments: [
       { type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }
+    ],
+    likes: [
+      { type: mongoose.Schema.Types.ObjectId, ref: 'Like' }
     ]
   },
   {

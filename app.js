@@ -6,7 +6,8 @@ import swaggerDocs from './swagger.js'
 import usersRouter from "./routes/usersRouter.js";
 import articlesRouter from "./routes/articlesRouter.js";
 import messagesRouter from "./routes/messagesRouter"
-import commentsRouter from "./routes/commentsRouter.js";
+import commentsRouter from "./routes/commentsRouter.js"
+import likesRouter from "./routes/likesRouter.js";
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import router from './routes/routes'
@@ -28,7 +29,7 @@ app.use(bodyParser.json());
 
 //connect to database
 mongoose
-  .connect(database, {
+  .connect("mongodb+srv://sergenm:SergeNm25@cluster0.ctshy.mongodb.net/Cluster0?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -47,6 +48,7 @@ app.use("/articles", articlesRouter)
 app.use("/messages", messagesRouter)
 app.use("/api", router)
 app.use("/comments", commentsRouter)
+app.use("/likes", likesRouter)
 
 //start app
 app.listen(port, () => {

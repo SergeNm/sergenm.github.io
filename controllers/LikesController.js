@@ -1,7 +1,7 @@
 // const Post = require('../../models/post');
 // const User = require('../../models/user');
 
-import Comment from '../models/comments.model'
+import Like from '../models/like.model'
 import User from '../models/user.model'
 import Article from '../models/article.model'
 
@@ -11,32 +11,31 @@ export default {
         let user = req.params;
         let userId = user.userId;
 
-        const { comment, articleId} = req.body;
-        const comment_ = await Comment.create({
-            comment,
+        const { like, articleId} = req.body;
+        const like_ = await Like.create({
             article:articleId,
             user:userId
         });
-        await comment_.save();
+        await like_.save();
 
         const userById = await User.findById(userId);
 
-        userById.comments.push(comment_);
+        userById.likes.push(like_);
         await userById.save();
 
         return res.send(userById);
     },
-    commentByUser : async (req,res)=>{
+    likeByUser : async (req,res)=>{
         const { userId } = req.params;
         const userById = await User.findById(userId);
-        const commentByUser = await Comment.find({user:userById}).populate('user', 'username').populate('article', 'title'); //.populate('article');
-        res.send(commentByUser);
+        const likeByUser = await Like.find({user:userById}).populate('user', 'username').populate('article', 'title'); //.populate('article');
+        res.send(likeByUser);
     },
 
-    commentByArticle : async (req,res)=>{
+    likeByArticle : async (req,res)=>{
         const { articleId } = req.params;
         const articleById = await Article.findById(articleId);
-        const commentByArticle = await Comment.find({article:articleById}).populate('article', 'title').populate('user', 'username'); //.populate('article');
-        res.send(commentByArticle);
+        const likeByArticle = await Like.find({article:articleById}).populate('article', 'title').populate('user', 'username'); //.populate('article');
+        res.send(likeByArticle);
     }
 }
