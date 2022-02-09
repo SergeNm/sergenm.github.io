@@ -41,7 +41,7 @@ const tempArticle = {
     //         });
     // })
     
-    it("should post new article with valid token", (done) => {
+   /* it("should post new article with valid token", (done) => {
       request(app)
         .post("/articles")
         .set({
@@ -54,7 +54,7 @@ const tempArticle = {
           done();
         })
         .catch((err) => done(err));
-    });
+    }); */
   
     it("shouldn't post the article if token is not provided", (done) => {
       request(app)
