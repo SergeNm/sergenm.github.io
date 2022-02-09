@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 
 //connect to database
 mongoose
-  .connect(database, {
+  .connect("mongodb+srv://sergenm:SergeNm25@cluster0.ctshy.mongodb.net/Cluster0?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
