@@ -10,7 +10,7 @@ on:
     branches: [ main ]
 
 env:
-  DB_URL_TEST: "mongodb+srv://sergenm:SergeNm25@cluster0.ctshy.mongodb.net/Cluster0?retryWrites=true&w=majority"
+  DB_URI_TEST: "mongodb+srv://sergenm:SergeNm25@cluster0.ctshy.mongodb.net/Cluster0?retryWrites=true&w=majority"
   USER_TEST: "testemail@test.com"
   USER_TEST_PASSWORD: "testPassword"
   TEMP_TOKEN: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY0NDMzNDc2Mn0.3tutNY_Qefk-6btiGQazuFVaQxn8tdeDFo4imdkJcAw"
