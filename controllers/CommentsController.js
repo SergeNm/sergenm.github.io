@@ -7,7 +7,6 @@ import Article from '../models/article.model'
 
 export default {
     create : async (req, res) => {
-        console.log(req.params);
         let user = req.params;
         let userId = user.userId;
 

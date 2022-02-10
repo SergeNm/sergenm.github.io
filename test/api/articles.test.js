@@ -145,7 +145,7 @@ describe("GET Articles", (req, res) => {
 
   after(async () => {
     try {
-      await Article.deleteMany({ title: tempArticle.title });
+      await Article.deleteOne({ title: tempArticle.title });
     } catch (err) {
       console.error(err);
     }
