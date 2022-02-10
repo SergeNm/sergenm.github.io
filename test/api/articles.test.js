@@ -22,8 +22,8 @@ const tempArticle = {
   let tempToken;
 
   before(function (done) {
-    this.timeout(3000);
-    setTimeout(done, 2000);
+    this.timeout(5000);
+    setTimeout(done, 4000);
     
   });
   
@@ -93,49 +93,9 @@ describe("GET Articles", (req, res) => {
         .catch((err) => done(err));
     });
 
-  
-  
-//     it("shouldn't accept invalid password", (done) => {
-//       tempUser.password = process.env.USER_TEST_PASSWORD + "asdf";
-//       request(app)
-//         .patch("/users/login")
-//         .send(tempUser)
-//         .expect(400)
-//         .then((res) => {
-//           expect(res.body.message).to.be.eql("Invalid password");
-//           done();
-//         })
-//         .catch((err) => done(err));
-//     });
-  
-//     it("shouldn't accept non-exisiting username", (done) => {
-//       tempUser.username = process.env.USER_TEST + "asdf";
-//       request(app)
-//         .patch("/users/login")
-//         .send(tempUser)
-//         .expect(404)
-//         .then((res) => {
-//           expect(res.body.message).to.be.eql("Account not found");
-//           done();
-//         })
-//         .catch((err) => done(err));
-//     });
-
     
   
-//     it("should log out users with valid token", (done) => {
-//       request(app)
-//         .patch("/users/logout")
-//         .set({
-//           Authorization: tempToken,
-//         })
-//         .expect(200)
-//         .then((res) => {
-//           expect(res.body.message).to.be.eql("User logged out");
-//           done();
-//         })
-//         .catch((err) => done(err));
-//     });
+  
   });
 
 

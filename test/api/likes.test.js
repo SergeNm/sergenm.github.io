@@ -21,8 +21,8 @@ let tempLike = {article: process.env.ARTICLE_ID}
 let tempToken = process.env.TEMP_TOKEN;
 
 before(function (done) {
-    this.timeout(3000);
-    setTimeout(done, 2000);
+    this.timeout(5000);
+    setTimeout(done, 4000);
 
 });
 

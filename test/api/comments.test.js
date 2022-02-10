@@ -22,8 +22,8 @@ const tempUser = {
 let tempToken;
 
 before(function (done) {
-    this.timeout(3000);
-    setTimeout(done, 2000);
+    this.timeout(5000);
+    setTimeout(done, 4000);
 
 });
 

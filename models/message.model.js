@@ -2,11 +2,11 @@
 import mongoose from 'mongoose'
 
 const MessageSchema = mongoose.Schema({
-    name: {
+    email: {
         type: String,
         required: true
     },
-    email: String,
+    name: String,
     address: String,
     message:  {
         type: String,

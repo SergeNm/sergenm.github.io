@@ -25,19 +25,19 @@ const messages = new MessagesController();
  *              items:
  *                type: object
  *                properties:
- *                  id:
- *                    type: number
- *                  createdBy:
+ *                  email:
  *                    type: string
- *                  title:
+ *                  name:
+ *                    type: string
+ *                  address:
  *                     type: string
- *                  body:
+ *                  message:
  *                      type: string
  *       400:
  *         description: Bad request
  */
 
-messagesRouter.get('/', messages.getAllMessage);
+messagesRouter.get('/', validateToken,messages.getAllMessage);
 
 
 // Add a contact
@@ -55,15 +55,21 @@ messagesRouter.get('/', messages.getAllMessage);
  *           schema:
  *            type: object
  *            required:
- *              - title
- *              - body
+ *              - email
+ *              - message
  *            properties:
- *              title:
+ *              name:
  *                type: string
- *                default: The tile of articlr
- *              body:
+ *                default: Your name
+ *              email:
  *                type: string
- *                default: The body of article
+ *                default: 'untitled@gmail.com'
+ *              address:
+ *                type: string
+ *                default: Kigali
+ *              message:
+ *                type: string
+ *                default: Send us Message
  *     responses:
  *      201:
  *        description: Created
@@ -98,7 +104,7 @@ messagesRouter.post('/', validateToken, messages.addOneMessage);
  */
 
 
-messagesRouter.get('/:messageId', messages.getOneMessage)
+messagesRouter.get('/:messageId', validateToken,messages.getOneMessage)
 
 //delete a specific contact
 /**

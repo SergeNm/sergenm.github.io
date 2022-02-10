@@ -1,4 +1,5 @@
 import express from 'express';
+import validateToken from "../middlewares/validateToken.js";
 
 const likesRouter = new express.Router;
 
@@ -37,7 +38,7 @@ import LikesController from '../controllers/LikesController';
   *      404:
   *        description: Not Found
   */
-likesRouter.post('/create/:userId', LikesController.create);
+likesRouter.post('/create/:userId', validateToken, LikesController.create);
 
 /**
   * @openapi
