@@ -83,5 +83,5 @@ jobs:
         filename: sergenm.github.io__${{ env.BRANCH }}.json
         label: Test Coverage
         message: ${{ env.COVERAGE }}
-        color: green
+        color: 'blue,555,daf'
         namedLogo: mocha
