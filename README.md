@@ -9,4 +9,14 @@ This is my personal website tended to share with you my experience in the journe
 ## About this project.
 
 This is a Full-Stack Project. Basically, the backend is written using **ExpressJs** [![Node version](https://img.shields.io/node/v/express.svg?style=flat)](http://nodejs.org/download/), while frontend used **HTML5**, **CSS3** and pure **VanillaJs**. No library used.
+
+## Setup
+
+Go to the terminal of yor choice and Use the following commands. **Note that** Git and nodeJs have to be installed in your computer
+
+```
+git clone <path of this repo>
+```
+
+
  
