@@ -8,21 +8,22 @@ import app from "../../app.js";
 import User from "../../models/user.model.js";
 
 const tempUser = {
-    username: process.env.USER_TEST,
-    password: process.env.USER_TEST_PASSWORD,
-  };
-  
-  let tempToken ;
+  username: process.env.USER_TEST,
+  password: process.env.USER_TEST_PASSWORD,
+};
 
-  before(function (done) {
-    this.timeout(5000);
-    setTimeout(done, 4000);
-  });
+let tempToken;
 
-  
+before(function (done) {
+  this.timeout(5000);
+  setTimeout(done, 4000);
+});
 
-  //we can add tests functions. Let's start with signing up new users:
 
+
+//we can add tests functions. Let's start with signing up new users:
+
+describe("USER'S CRUD \n", () => {
   describe("POST users", () => {
     it("should register new user with valid credentials", (done) => {
       request(app)
@@ -35,7 +36,7 @@ const tempUser = {
         })
         .catch((err) => done(err));
     });
-  
+
     it("shouldn't accept the username that already exists in the database", (done) => {
       request(app)
         .post("/users/signup")
@@ -49,8 +50,8 @@ const tempUser = {
     });
   });
 
-//   Let's test the "PATCH" methods now
-describe("PATCH users", () => {
+  //   Let's test the "PATCH" methods now
+  describe("PATCH users", () => {
     it("should accept correct credentials", (done) => {
       request(app)
         .patch("/users/login")
@@ -60,13 +61,13 @@ describe("PATCH users", () => {
           expect(res.body.message).to.be.eql("User logged in successfully");
           tempToken = `Bearer ${res.body.token}`;
           process.env.TEMP_TOKEN = tempToken
-          
+
           // console.log("--------------------!!!!!", process.env.TEMP_TOKEN)
           done();
         })
         .catch((err) => done(err));
     });
-  
+
     it("shouldn't accept invalid password", (done) => {
       tempUser.password = process.env.USER_TEST_PASSWORD + "asdf";
       request(app)
@@ -79,7 +80,7 @@ describe("PATCH users", () => {
         })
         .catch((err) => done(err));
     });
-  
+
     it("shouldn't accept non-exisiting username", (done) => {
       tempUser.username = process.env.USER_TEST + "asdf";
       request(app)
@@ -93,8 +94,8 @@ describe("PATCH users", () => {
         .catch((err) => done(err));
     });
 
-    
-  
+
+
     it("should log out users with valid token", (done) => {
       request(app)
         .patch("/users/logout")
@@ -110,20 +111,23 @@ describe("PATCH users", () => {
     });
   });
 
+})
 
-  /**
-   * After finishing the tests, we should get rid of the temporary user that we have created in our test database.
-   */
 
-  after(async () => {
-    try {
-      await User.deleteOne({ username: process.env.USER_TEST });
-    } catch (err) {
-      console.error(err);
-    }
-  });
 
-  
+/**
+ * After finishing the tests, we should get rid of the temporary user that we have created in our test database.
+ */
+
+after(async () => {
+  try {
+    await User.deleteOne({ username: process.env.USER_TEST });
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+
   // after(async () => {
   //   try {
   //     let user = await User.findOne({ username: process.env.USER_TEST });

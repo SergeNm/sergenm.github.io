@@ -50,19 +50,6 @@ class MessagesController {
             res.json({ message: error })
         }
     }
-
-    //update a specific message
-    async updateOneMessage(req, res) {
-        try {
-            const updatedMessage = await Message.updateOne(
-                { _id: req.params.messageId },
-                { $set: { message: req.body.message } }
-            )
-            res.json(updatedMessage)
-        } catch (err) {
-            res.json({ message: error })
-        }
-    }
 }
 
 export default MessagesController;

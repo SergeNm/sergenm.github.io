@@ -131,41 +131,5 @@ messagesRouter.get('/:messageId', validateToken,messages.getOneMessage)
 messagesRouter.delete('/:articleId', validateToken, messages.deleteOneMessage)
 
 
-//update a specific contact
-/**
- * @openapi
- * '/messages/:contactId':
- *  patch:
- *     tags:
- *     - Messages
- *     summary: Modify an Messages
- *     requestBody:
- *      required: true
- *      content:
- *        application/json:
- *           schema:
- *            type: object
- *            required:
- *              - title
- *              - body
- *            properties:
- *              title:
- *                type: string
- *                default: your title
- *              body:
- *                type: string
- *                default: your body
- *     responses:
- *      200:
- *        description: Modified
- *      400:
- *        description: Bad Request
- *      404:
- *        description: Not Found
- */
-//update a specific contact
-messagesRouter.patch('/:articleId', validateToken, messages.updateOneMessage )
-
-
 export default messagesRouter;
 

@@ -20,7 +20,7 @@ class ArticlesController {
         const article = new Article({
             title: req.body.title,
             body: req.body.body,
-            message: req.body.message
+            images: req.body.images
         });
 
         try {
@@ -54,15 +54,17 @@ class ArticlesController {
 
     //update a specific article
     async updateOneArticle(req, res) {
-        try {
-            const updatedArticle = await Article.updateOne(
-                { _id: req.params.contactId },
-                { $set: { body: req.body.body } }
-            )
-            res.json(updatedArticle)
-        } catch (err) {
-            res.json({ message: error })
-        }
+
+        await Article.updateOne(
+            { _id: req.params.articleId },
+            { $set: { body: req.body.body, title: req.body.title } },
+            (err, docs) => {
+                if (err) res.json({ message: err })
+                else res.json({message: "Updated Successfully"});
+            }
+        ).clone().catch(function (err) { console.log(err) })  // Allowing excution of query multiple times
+
+
     }
 }
 

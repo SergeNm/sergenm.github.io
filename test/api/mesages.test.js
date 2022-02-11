@@ -10,27 +10,27 @@ import User from "../../models/user.model";
 
 
 const tempMessage = {
-    email: process.env.USER_TEST,
-    name: "Tester",
-    address: "ADDRESS",
-    message: "Testing message"
-  };
+  email: process.env.USER_TEST,
+  name: "Tester",
+  address: "ADDRESS",
+  message: "Testing message"
+};
 
-  const tempUser = {
-    username: process.env.USER_TEST,
-    password: process.env.USER_TEST_PASSWORD,
-  };
-  
-  let tempToken;
+const tempUser = {
+  username: process.env.USER_TEST,
+  password: process.env.USER_TEST_PASSWORD,
+};
 
-  before(function (done) {
-    this.timeout(5000);
-    setTimeout(done, 4000);
-    
-  });
-  
+let tempToken = process.env.TEMP_TOKEN;
+
+before(function (done) {
+  this.timeout(5000);
+  setTimeout(done, 4000);
+
+});
 
 
+describe("MESSAGE'S CRUD \n", () => {
   //we can add tests functions. Let's start with signing up new users:
 
   describe("POST Messages", (req, res) => {
@@ -38,7 +38,7 @@ const tempMessage = {
       request(app)
         .post("/messages")
         .set({
-            Authorization: `Bearer ${process.env.TEMP_TOKEN}`,
+          Authorization: `Bearer ${tempToken}`,
         })
         .send(tempMessage)
         .expect(200)
@@ -50,13 +50,13 @@ const tempMessage = {
     });
   });
 
-//   Let's test the "Get" methods now
-describe("GET Messages", (req, res) => {
+  //   Let's test the "Get" methods now
+  describe("GET Messages", (req, res) => {
     it("should return all messages", (done) => {
       request(app)
         .get("/messages")
         .set({
-            Authorization: `Bearer ${process.env.TEMP_TOKEN}`,
+          Authorization: `Bearer ${tempToken}`,
         })
         .expect(200)
         .then((res) => {
@@ -70,7 +70,7 @@ describe("GET Messages", (req, res) => {
       request(app)
         .get("/messages/6204dc03df8149918a32b4c1")
         .set({
-            Authorization: `Bearer ${process.env.TEMP_TOKEN}`,
+          Authorization: `Bearer ${tempToken}`,
         })
         .expect(200)
         .then((res) => {
@@ -80,61 +80,21 @@ describe("GET Messages", (req, res) => {
         .catch((err) => done(err));
     });
 
-  
-  
-//     it("shouldn't accept invalid password", (done) => {
-//       tempUser.password = process.env.USER_TEST_PASSWORD + "asdf";
-//       request(app)
-//         .patch("/users/login")
-//         .send(tempUser)
-//         .expect(400)
-//         .then((res) => {
-//           expect(res.body.message).to.be.eql("Invalid password");
-//           done();
-//         })
-//         .catch((err) => done(err));
-//     });
-  
-//     it("shouldn't accept non-exisiting username", (done) => {
-//       tempUser.username = process.env.USER_TEST + "asdf";
-//       request(app)
-//         .patch("/users/login")
-//         .send(tempUser)
-//         .expect(404)
-//         .then((res) => {
-//           expect(res.body.message).to.be.eql("Account not found");
-//           done();
-//         })
-//         .catch((err) => done(err));
-//     });
-
-    
-  
-//     it("should log out users with valid token", (done) => {
-//       request(app)
-//         .patch("/users/logout")
-//         .set({
-//           Authorization: tempToken,
-//         })
-//         .expect(200)
-//         .then((res) => {
-//           expect(res.body.message).to.be.eql("User logged out");
-//           done();
-//         })
-//         .catch((err) => done(err));
-//     });
   });
+
+})
+
 
 
 //   /**
 //    * After finishing the tests, we should get rid of the temporary user that we have created in our test database.
 //    */
 
-  after(async () => {
-    try {
-      await Message.deleteOne({ email: tempMessage.email });
-    } catch (err) {
-      console.error(err);
-    }
-  });
+after(async () => {
+  try {
+    await Message.deleteOne({ email: tempMessage.email });
+  } catch (err) {
+    console.error(err);
+  }
+});
 

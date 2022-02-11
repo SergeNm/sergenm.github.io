@@ -19,7 +19,7 @@ const tempUser = {
     password: process.env.USER_TEST_PASSWORD,
 };
 
-let tempToken;
+let tempToken = process.env.TEMP_TOKEN;
 
 before(function (done) {
     this.timeout(5000);
@@ -45,7 +45,7 @@ describe("CRUD Comments", (req, res) => {
         request(app)
             .post("/comments/create/" + process.env.USER_ID)
             .set({
-                Authorization: `Bearer ${process.env.TEMP_TOKEN}`,
+                Authorization: `Bearer ${tempToken}`,
             })
             .send(tempComment)
             .expect(200)
@@ -60,7 +60,7 @@ describe("CRUD Comments", (req, res) => {
         request(app)
             .get("/comments/user/" + process.env.USER_ID)
             .set({
-                Authorization: `Bearer ${process.env.TEMP_TOKEN}`,
+                Authorization: `Bearer ${tempToken}`,
             })
             .expect(200)
             .then((res) => {
@@ -76,7 +76,7 @@ describe("CRUD Comments", (req, res) => {
         request(app)
             .get("/comments/article/" + process.env.ARTICLE_ID)
             .set({
-                Authorization: `Bearer ${process.env.TEMP_TOKEN}`,
+                Authorization: `Bearer ${tempToken}`,
             })
             .expect(200)
             .then((res) => {

@@ -5,7 +5,7 @@ const options = {
   definition: {
      openapi: '3.0.0',
     info: {
-      title: 'LoopBack Application v2',
+      title: 'My-Brand V1',
       version: '1.0.2',
     },
     paths: {},

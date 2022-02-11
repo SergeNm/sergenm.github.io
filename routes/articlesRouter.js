@@ -64,6 +64,11 @@ const articles = new ArticlesController();
   *              body:
   *                type: string
   *                default: The body of article
+  *              images: 
+  *                 type: array
+  *                 items:
+  *                   type: string
+  *                 example: [{"positioned": 1, "path":"uploads/images/default.jpg"}]
   *     responses:
   *      201:
   *        description: Created
@@ -128,7 +133,7 @@ const articles = new ArticlesController();
  //update a specific article
  /**
   * @openapi
-  * '/articles/:articleId':
+  * '/articles/{articleId}':
   *  patch:
   *     tags:
   *     - Articles
