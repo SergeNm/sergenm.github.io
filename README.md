@@ -6,7 +6,7 @@
 
 This is my personal website tended to share with you my experience in the journey of being a software developer.
 
-## About this project.
+## About this project
 
 This is a Full-Stack Project. Basically, the backend is written using **ExpressJs** [![Node version](https://img.shields.io/node/v/express.svg?style=flat)](http://nodejs.org/download/), while frontend used **HTML5**, **CSS3** and pure **VanillaJs**. No library used.
 
@@ -19,6 +19,3 @@ git clone https://github.com/SergeNm/sergenm.github.io.git
 cd sergenm.github.io
 npm install
 ```
-
-
- 
