@@ -15,7 +15,9 @@ This is a Full-Stack Project. Basically, the backend is written using **ExpressJ
 Go to the terminal of yor choice and Use the following commands. **Note that** Git and nodeJs have to be installed in your computer
 
 ```
-git clone <path of this repo>
+git clone https://github.com/SergeNm/sergenm.github.io.git
+cd sergenm.github.io
+npm install
 ```
 
 
