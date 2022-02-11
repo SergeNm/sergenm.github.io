@@ -44,12 +44,12 @@ class ArticlesController {
 
     //delete a specific contact
     async deleteOneArticle(req, res) {
-        try {
-            const removedArticle = await Article.deleteOne({ _id: req.params.articleId })
-            res.json(removedArticle)
-        } catch (err) {
-            res.json({ message: error })
-        }
+
+        const removedArticle = await Article.deleteOne({ _id: req.params.articleId }, (err, docs) => {
+            if (err) res.json({ message: err })
+            else res.json(removedArticle)
+        })
+
     }
 
     //update a specific article
@@ -60,7 +60,7 @@ class ArticlesController {
             { $set: { body: req.body.body, title: req.body.title } },
             (err, docs) => {
                 if (err) res.json({ message: err })
-                else res.json({message: "Updated Successfully"});
+                else res.json({ message: "Updated Successfully" });
             }
         ).clone().catch(function (err) { console.log(err) })  // Allowing excution of query multiple times
 
