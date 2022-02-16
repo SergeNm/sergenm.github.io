@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>N. Mugisha Serge</title>
+  <!-- font-awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+  <!-- styles -->
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+
+<body>
+  <header class="header" id="home">
+    <!-- navbar -->
+    <nav id="nav">
+      <div class="nav-center">
+        <!-- nav header -->
+        <div class="nav-header">
+          <img src="../images/logo.svg" class="logo" alt="logo" />
+          <button class="nav-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+        <!-- links -->
+        <div class="links-container">
+          <ul class="links">
+            <li>
+              <a href="#home" class="scroll-link">home</a>
+            </li>
+            <li>
+              <a href="#about" class="scroll-link">about</a>
+            </li>
+            <li>
+              <a href="#services" class="scroll-link">services</a>
+            </li>
+            <li>
+              <a href="#tours" class="scroll-link">tours</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- New ASrticle -->
+  <section id="contact" class="section">
+    <div class="title">
+      <h2>Create<span> New Contact</span> </h2>
+    </div>
+    <div class="page-content">
+      <form action="/" class="decor">
+        <div class="form-left-decoration"></div>
+        <div class="form-right-decoration"></div>
+        <div class="circle"></div>
+        <div class="form-inner">
+          <input type="text" placeholder="TITLE">
+          <textarea placeholder="CONTENT" rows="5"></textarea>
+          <label for="image">Add Image:</label>
+
+          <input type="file" id="image" name="image" accept="image/png, image/jpeg">
+          <button class="btn-submit" type="submit" href="/">Submit</button>
+        </div>
+      </form>
+    </div>
+
+  </section>
+  <!-- footer -->
+  <footer class="section">
+    <p>
+      copyright &copy; backroads travel tours company
+      <span id="date"></span>. all rights reserved
+    </p>
+  </footer>
+  <a class="scroll-link top-link" href="#home">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+  <!-- javascript -->
+  <script src="../js/main.js"></script>
+
+  <script>
+    const url = "https://sergenm-brand.herokuapp.com/articles";
+    let data = {
+      title: 'TITLE FROM DOM',
+      body: "More content should be written here",
+      Image: [
+        { "positioned": 1, "path": "uploads/images/dom.jpg" }
+      ]
+    }
+
+    let request = new Request(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: new Headers({
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer '
+      })
+    });
+
+    fetch(request)
+      .then(function () {
+        // Handle response you get from the API
+      });
+  </script>
+
+</body>
+
+</html>
