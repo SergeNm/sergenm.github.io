@@ -59,8 +59,8 @@
           <input name="title" id="title" type="text" placeholder="TITLE">
           <label for="body"></label>
           <textarea name="body" id="body" placeholder="CONTENT" rows="5"></textarea>
-          <label for="image">Add Image:</label>
-          <input type="file" id="image" name="image" accept="image/png, image/jpeg">
+          <label for="image_">Add Image:</label>
+          <input type="file" id="image_" name="image_" accept="image/png, image/jpeg"  multiple>
           <button class="btn-submit" type="submit" href="/">Submit</button>
         </div>
       </form>
@@ -111,6 +111,13 @@
      * We'll define the `handleFormSubmit()` event handler function in the next step.
      */
     newArticleForm.addEventListener("submit", handleFormSubmit);
+
+    // file upload
+    const imageElement = document.getElementById("image_");
+    imageElement.addEventListener("change", handleFiles, false);
+    function handleFiles() {
+      const fileList = this.files; /* now you can work with the file list */
+    }
 
     /**
     * Event handler for a form submit event.
@@ -187,6 +194,7 @@
       const plainFormData = Object.fromEntries(formData.entries());
       const formDataJsonString = JSON.stringify(plainFormData);
 
+      console.log(formDataJsonString);
       const fetchOptions = {
         /**
          * The default method for a request with fetch is GET,
