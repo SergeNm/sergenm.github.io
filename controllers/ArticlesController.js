@@ -20,7 +20,8 @@ class ArticlesController {
         const article = new Article({
             title: req.body.title,
             body: req.body.body,
-            images: req.body.images
+            // images: req.body.images
+            image: req.body.image
         });
 
         try {

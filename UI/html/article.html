@@ -44,21 +44,22 @@
     </nav>
   </header>
 
-  <!-- New ASrticle -->
+  <!-- New Article -->
   <section id="contact" class="section">
     <div class="title">
       <h2>Create<span> New Contact</span> </h2>
     </div>
     <div class="page-content">
-      <form action="/" class="decor">
+      <form action="https://sergenm-brand.herokuapp.com/articles" id="form-new-article" class="decor">
         <div class="form-left-decoration"></div>
         <div class="form-right-decoration"></div>
         <div class="circle"></div>
         <div class="form-inner">
-          <input type="text" placeholder="TITLE">
-          <textarea placeholder="CONTENT" rows="5"></textarea>
+          <label for="title"></label>
+          <input name="title" id="title" type="text" placeholder="TITLE">
+          <label for="body"></label>
+          <textarea name="body" id="body" placeholder="CONTENT" rows="5"></textarea>
           <label for="image">Add Image:</label>
-
           <input type="file" id="image" name="image" accept="image/png, image/jpeg">
           <button class="btn-submit" type="submit" href="/">Submit</button>
         </div>
@@ -80,28 +81,145 @@
   <script src="../js/main.js"></script>
 
   <script>
-    const url = "https://sergenm-brand.herokuapp.com/articles";
-    let data = {
-      title: 'TITLE FROM DOM',
-      body: "More content should be written here",
-      Image: [
-        { "positioned": 1, "path": "uploads/images/dom.jpg" }
-      ]
+    // const url = "https://sergenm-brand.herokuapp.com/articles";
+    // let data = {
+    //   title: 'TITLE FROM DOM',
+    //   body: "More content should be written here",
+    //   Image: [
+    //     { "positioned": 1, "path": "uploads/images/dom.jpg" }
+    //   ]
+    // }
+
+    // let request = new Request(url, {
+    //   method: 'POST',
+    //   body: JSON.stringify(data),
+    //   headers: new Headers({
+    //     'Content-Type': 'application/json; charset=UTF-8',
+    //     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY0NDMzNDc2Mn0.3tutNY_Qefk-6btiGQazuFVaQxn8tdeDFo4imdkJcAw'
+    //   })
+    // });
+
+    // fetch(request)
+    //   .then(function (res) {
+    //     // Handle response you get from the API
+    //     res.json().then(data => console.log(data))
+    //   });
+
+    const newArticleForm = document.getElementById("form-new-article");
+
+    /**
+     * We'll define the `handleFormSubmit()` event handler function in the next step.
+     */
+    newArticleForm.addEventListener("submit", handleFormSubmit);
+
+    /**
+    * Event handler for a form submit event.
+    *
+    * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event
+    * 
+    * @param {SubmitEvent} event
+    */
+    async function handleFormSubmit(event) {
+      /**
+       * This prevents the default behaviour of the browser submitting
+       * the form so that we can handle things instead.
+       */
+      event.preventDefault();
+
+      /**
+       * This gets the element which the event handler was attached to.
+       *
+       * @see https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget
+       */
+      const form = event.currentTarget;
+
+      /**
+       * This takes the API URL from the form's `action` attribute.
+       */
+      const url = form.action;
+
+      try {
+        /**
+         * This takes all the fields in the form and makes their values
+         * available through a `FormData` instance.
+         * 
+         * @see https://developer.mozilla.org/en-US/docs/Web/API/FormData
+         */
+        const formData = new FormData(form);
+
+        /**
+         * We'll define the `postFormDataAsJson()` function in the next step.
+         */
+        const responseData = await postFormDataAsJson({ url, formData });
+
+        /**
+         * Normally you'd want to do something with the response data,
+         * but for this example we'll just log it to the console.
+         */
+        console.log({ responseData });
+
+      } catch (error) {
+        console.error(error);
+      }
     }
 
-    let request = new Request(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: new Headers({
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer '
-      })
-    });
+    /**
+     * Helper function for POSTing data as JSON with fetch.
+     *
+     * @param {Object} options
+     * @param {string} options.url - URL to POST data to
+     * @param {FormData} options.formData - `FormData` instance
+     * @return {Object} - Response body from URL that was POSTed to
+     */
+    async function postFormDataAsJson({ url, formData }) {
+      /**
+       * We can't pass the `FormData` instance directly to `fetch`
+       * as that will cause it to automatically format the request
+       * body as "multipart" and set the `Content-Type` request header
+       * to `multipart/form-data`. We want to send the request body
+       * as JSON, so we're converting it to a plain object and then
+       * into a JSON string.
+       * 
+       * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST
+       * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries
+       * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+       */
+      const plainFormData = Object.fromEntries(formData.entries());
+      const formDataJsonString = JSON.stringify(plainFormData);
 
-    fetch(request)
-      .then(function () {
-        // Handle response you get from the API
-      });
+      const fetchOptions = {
+        /**
+         * The default method for a request with fetch is GET,
+         * so we must tell it to use the POST HTTP method.
+         */
+        method: "POST",
+        /**
+         * These headers will be added to the request and tell
+         * the API that the request body is JSON and that we can
+         * accept JSON responses.
+         */
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY0NDMzNDc2Mn0.3tutNY_Qefk-6btiGQazuFVaQxn8tdeDFo4imdkJcAw',
+          "Accept": "application/json"
+        },
+        /**
+         * The body of our POST request is the JSON string that
+         * we created above.
+         */
+        body: formDataJsonString,
+      };
+
+      const response = await fetch(url, fetchOptions);
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(errorMessage);
+      }
+
+      return response.json();
+    }
+
   </script>
 
 </body>

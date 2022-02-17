@@ -13,12 +13,16 @@ const ArticleSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    images: [
-        {
-            positioned: Number,
-            path: String
-        }
-    ],
+    image: {
+        type: String,
+        default: 'images/default.jpg'
+    },
+    // images: [
+    //     {
+    //         positioned: Number,
+    //         path: String
+    //     }
+    // ],
     date: {
         type: Date,
         default: Date.now
