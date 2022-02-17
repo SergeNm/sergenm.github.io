@@ -12,42 +12,6 @@
 </head>
 
 <body>
-  <header class="header" id="home">
-    <!-- navbar -->
-    <nav id="nav">
-      <div class="nav-center">
-        <!-- nav header -->
-        <div class="nav-header">
-          <img src="../images/logo.svg" class="logo" alt="logo" />
-          <button class="nav-toggle">
-            <i class="fas fa-bars"></i>
-          </button>
-        </div>
-        <!-- links -->
-        <div class="links-container">
-          <ul class="links">
-            <li>
-              <a href="#home" class="scroll-link">Dashboard</a>
-            </li>
-            <li>
-              <a href="#about" class="scroll-link">logout</a>
-            </li>
-           
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-  <div>
-    <button class="btn-admin"><i class="fa fa-plus"></i> Create New Article</button>
-    <button class="btn-admin"><i class="fa fa-bars"></i> Menu</button>
-    <button class="btn-admin"><i class="fa fa-folder"></i> Folder</button>
-    <button class="btn-admin"><i class="fa fa-trash"></i> Delete</button>
-    <button class="btn-admin"><i class="fa fa-close"></i> Close</button>
-  </div>
-  <!-- New Article -->
-
-    
     <div class="page-content">
         <div class="login">
             <div class="form-login">
@@ -63,12 +27,11 @@
             </div>
           </div>
     </div>
-
  
   <!-- footer -->
   <footer class="section">
     <p>
-      copyright &copy; backroads travel tours company
+      copyright &copy; N. Migisha Serge
       <span id="date"></span>. all rights reserved
     </p>
   </footer>
@@ -85,7 +48,15 @@
     loginForm.addEventListener("submit", handleFormSubmit);
 
     const displayMessage = document.getElementById("message-display")
+    const adminMenu = document.getElementById('admin-menu');
+    const logoutButton = document.getElementById('logout-btn'); 
 
+
+
+    logoutButton.addEventListener('click', (e) => {
+      window.localStorage.removeItem('user');
+      location.reload()
+    })
 
     // let request = new Request(url, {
     //   method: 'POST',
@@ -124,6 +95,7 @@
 
         displayMessage.innerText = userData.message
 
+        window.location.href = "article.html";
         console.log({ responseData });
 
       } catch (error) {

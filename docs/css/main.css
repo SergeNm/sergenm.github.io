@@ -464,7 +464,7 @@ footer p {
 
 .show-link {
   visibility: visible;
-  z-index: 100;
+  z-index: 30;
 }
 
 @keyframes bounce {
@@ -879,7 +879,7 @@ form {
 }
 .timeline > li .timeline-image {
   position: absolute;
-  z-index: 100;
+  z-index: 30;
   left: 0;
   width: 80px;
   height: 80px;
@@ -925,6 +925,14 @@ form {
 .timeline .timeline-body > ul,
 .timeline .timeline-body > p {
   margin-bottom: 0;
+}
+
+.timeline-heading h3{
+  color: var(--clr-primary-3)
+}
+
+.timeline-panel h4 span{
+  color: var(--clr-primary-5);
 }
 
 @media (min-width: 768px) {
@@ -1163,6 +1171,10 @@ user agent stylesheet
 }
 
 /* ADMIN PAGES */
+.message-info{
+  padding-bottom: 1em;
+}
+
 .btn-admin {
   background-color: #53475e;
   border: none;
@@ -1179,3 +1191,6 @@ user agent stylesheet
   background-color: #ba8de0;
 }
 
+#admin-menu{
+  padding-top: 0.5em;
+}

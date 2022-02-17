@@ -91,22 +91,21 @@
     <div class="title">
       <h2>Who <span>we are</span></h2>
     </div>
-    <h1>ARTICLES</h1>
 
     <ul id="articles"></ul>
 
     <ul class="timeline">
       <li>
-        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/1.jpg" alt="..."></div>
+        <div class="timeline-image"><img class="rounded-circle img-fluid" src="images/SERGE.JPG" alt="..."></div>
         <div class="timeline-panel">
           <div class="timeline-heading">
-            <h4>2009-2011</h4>
-            <h4 class="subheading">Our Humble Beginnings</h4>
+            <h3>Profile</h3>
+            <h4 class="subheading"> <span>Email </span> nmugishaserge@gmail.com</h4>
           </div>
           <div class="timeline-body">
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius
-              sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo
-              dolore laudantium consectetur!</p>
+            <p class="text-muted"><h4 class="subheading"> <span>Names: </span>  NSHIMIYIMANA Mugisha Serge </h4></p>
+            <p class="text-muted"><h4 class="subheading"> <span>Residance: </span> Rwanda, Kigali, Kicukiro </h4></p>
+            <p class="text-muted"><h4 class="subheading"> <span>Tel: </span> +250 789858453 </h4></p>
           </div>
         </div>
       </li>
@@ -163,7 +162,7 @@
   <!-- footer -->
   <footer class="section">
     <p>
-      copyright &copy; backroads travel tours company
+      copyright &copy; N. Migisha Serge
       <span id="date"></span>. all rights reserved
     </p>
   </footer>
@@ -182,32 +181,32 @@
     const dFrag = document.createDocumentFragment();
     const url = 'https://sergenm-brand.herokuapp.com/articles';
 
-    function createMenuItem(name) {
-      let li = document.createElement('li');
-      let title = document.createElement('h2');
-      title.textContent = name;
-      li.appendChild(title);
-      dFrag.appendChild(li);
-      return li;
-    }
+    // function createMenuItem(name) {
+    //   let li = document.createElement('li');
+    //   let title = document.createElement('h2');
+    //   title.textContent = name;
+    //   li.appendChild(title);
+    //   dFrag.appendChild(li);
+    //   return li;
+    // }
 
 
-    fetch(url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        let articles = data;
-        articles.map(function (article) {
-          createMenuItem(article.title);
-          ul.appendChild(dFrag);
-        });
-      }).then(() => {
-        ul.appendChild(dFrag);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    // fetch(url)
+    //   .then((response) => {
+    //     return response.json();
+    //   })
+    //   .then((data) => {
+    //     let articles = data;
+    //     articles.map(function (article) {
+    //       createMenuItem(article.title);
+    //       ul.appendChild(dFrag);
+    //     });
+    //   }).then(() => {
+    //     ul.appendChild(dFrag);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
 
     ////////////////////
     //FETCH ARTICLES  //
