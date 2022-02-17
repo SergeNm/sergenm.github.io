@@ -195,6 +195,10 @@
       const formDataJsonString = JSON.stringify(plainFormData);
 
       console.log(formDataJsonString);
+
+      const userData = JSON.parse(window.localStorage.getItem('user'));
+      const token = userData.token;
+
       const fetchOptions = {
         /**
          * The default method for a request with fetch is GET,
@@ -208,7 +212,7 @@
          */
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY0NDMzNDc2Mn0.3tutNY_Qefk-6btiGQazuFVaQxn8tdeDFo4imdkJcAw',
+          'Authorization': `Bearer ${token}`,
           "Accept": "application/json"
         },
         /**
