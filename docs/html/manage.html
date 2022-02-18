@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>N. Mugisha Serge</title>
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/main.css" />
+</head>
+
+<body>
+    <div id="admin-menu">
+        <button class="btn-admin"><i class="fa fa-plus"></i> Create New Article</button>
+        <button class="btn-admin"><i class="fa fa-user"></i> Profile</button>
+        <button class="btn-admin"><i class="fa fa-cog"></i> Setting</button>
+        <button class="btn-admin"><i class="fa fa-home"></i> <a href="../index.html" style="color: #fff;">Home</a></button>
+        <button class="btn-admin" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </div>
+
+    <!-- Manage Article -->
+
+    <div class="title">
+        <h2>Manage<span> Articles</span> </h2>
+    </div>
+    <div class="page-content">
+        <div class="manage-article">
+            <div class="article-content">
+                
+                <!-- <div class="article-container">
+                    <div class="article-left"> <img class="article-img" src="../images/SERGE.JPG"></div>
+                    <div class="article-aside">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum earum ab reiciendis? Similique
+                        perspiciatis eaque quae reiciendis! Temporibus, illum nostrum.
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- footer -->
+    <footer class="section">
+        <p>
+            copyright &copy; N. Migisha Serge
+            <span id="date"></span>. all rights reserved
+        </p>
+    </footer>
+    <a class="scroll-link top-link" href="#home">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    <!-- javascript -->
+    <script src="../js/main.js"></script>
+
+    <script>
+
+        const url = 'https://sergenm-brand.herokuapp.com/articles';
+
+        const checkUser = window.localStorage.getItem('user');
+
+
+        if (!checkUser)
+            window.location.href = "login.html";
+
+        //LOGOUT 
+        const logoutButton = document.getElementById('logout-btn');
+        logoutButton.addEventListener('click', (e) => {
+            window.localStorage.removeItem('user');
+            window.location.href = "login.html";
+        })
+
+        ////////////////////
+        //FETCH ARTICLES  //
+        ///////////////////
+        const articleContent = document.querySelector('.article-content');
+        fetch(url)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                data.slice(-3).map(function (article) {
+
+                    // var img_ = document.createElement('img');
+                    // img_.src = img;
+                    // showImg.appendChild(img_);
+
+                    const addArticle =
+                        `<div class="article-container">
+                    <div class="article-left"> <img class="article-img" src=${article.image}></div>
+                    <div class="article-aside">
+                        ${article.body}
+                        <div class="article-btn">
+                            <button class="btn-admin" style="color: rgb(190, 248, 197);"><i class="fa fa-edit"></i>
+                                Edit</button>
+                            <button class="btn-admin" style="color: rgb(255, 181, 181);"><i class="fa fa-edit"></i>
+                                Delete</button>
+                        </div>
+                    </div>
+
+                </div>`
+
+                    articleContent.insertAdjacentHTML('afterbegin', addArticle);
+                })
+            })
+    </script>
+
+</body>
+
+</html>

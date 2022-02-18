@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
- 
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,7 +44,7 @@
                 <i class="fas fa-user-circle" style="font-size:32px; color:#ccc"></i>
               </a>
             </li>
-            
+
           </ul>
         </div>
       </div>
@@ -103,9 +103,15 @@
             <h4 class="subheading"> <span>Email </span> nmugishaserge@gmail.com</h4>
           </div>
           <div class="timeline-body">
-            <p class="text-muted"><h4 class="subheading"> <span>Names: </span>  NSHIMIYIMANA Mugisha Serge </h4></p>
-            <p class="text-muted"><h4 class="subheading"> <span>Residance: </span> Rwanda, Kigali, Kicukiro </h4></p>
-            <p class="text-muted"><h4 class="subheading"> <span>Tel: </span> +250 789858453 </h4></p>
+            <p class="text-muted">
+            <h4 class="subheading"> <span>Names: </span> NSHIMIYIMANA Mugisha Serge </h4>
+            </p>
+            <p class="text-muted">
+            <h4 class="subheading"> <span>Residance: </span> Rwanda, Kigali, Kicukiro </h4>
+            </p>
+            <p class="text-muted">
+            <h4 class="subheading"> <span>Tel: </span> +250 789858453 </h4>
+            </p>
           </div>
         </div>
       </li>
@@ -219,12 +225,16 @@
       .then((data) => {
         data.slice(-3).map(function (article) {
 
+          // var img_ = document.createElement('img');
+          // img_.src = img;
+          // showImg.appendChild(img_);
+          
           const addArticle =
-            `<a class='post-link' href='#'>
+            `<a class='post-link' href='html/blog.html?${article._id}'>
           <div class='post-wrap'>
 
-            <div class='post-image'
-              style='background-image: url("https://d29fhpw069ctt2.cloudfront.net/photo/34669/preview/e2ddba22_npreviews_dd6e.jpg")'>
+            <div>
+            <img class='post-image' src=${article.image} alt="serge">
             </div>
 
             <div class='post-body'>

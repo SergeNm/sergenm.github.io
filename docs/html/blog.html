@@ -12,49 +12,34 @@
 </head>
 
 <body>
-  <header class="header" id="home">
-    <!-- navbar -->
-    <nav id="nav">
-      <div class="nav-center">
-        <!-- nav header -->
-        <div class="nav-header">
-          <img src="../images/logo.svg" class="logo" alt="logo" />
-          <button class="nav-toggle">
-            <i class="fas fa-bars"></i>
-          </button>
-        </div>
-        <!-- links -->
-        <div class="links-container">
-          <ul class="links">
-            <li>
-              <a href="#home" class="scroll-link">home</a>
-            </li>
-            <li>
-              <a href="#about" class="scroll-link">about</a>
-            </li>
-            <li>
-              <a href="#services" class="scroll-link">services</a>
-            </li>
-            <li>
-              <a href="#tours" class="scroll-link">tours</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
+  <div id="admin-menu">
+    <button class="btn-admin"><i class="fa fa-sign-in-alt"></i> Sign In </button>
+    <button class="btn-admin"><i class="fa fa-home"></i> <a href="../index.html" style="color: #fff;">home</a> </button>
+    <!-- <button class="btn-admin"><i class="fa fa-cog"></i> Setting</button>
+    <button class="btn-admin"><i class="fa fa-trash"></i> Delete</button>
+    <button class="btn-admin" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button> -->
+  </div>
 
-  <!-- services -->
-  <section id="services" class="section">
-    <div class="title">
-      <h2>our <span>services</span></h2>
+  <!-- BLOG POST -->
+  <div class="blog-viewer">
+
+  </div>
+
+  <div class="comment-viewer">
+    <h3> Comments </h3>
+    <div id="add-comment">
+      <form action="https://sergenm-brand.herokuapp.com/comments" id="form-new-comment">
+        <textarea placeholder="Your Comment..." rows="5"></textarea>
+        <button class="btn-submit" type="submit">Send</button>
+      </form>
+
     </div>
-    <h1>ARTICLES</h1>
-    <h1>ARTICLES</h1><h1>ARTICLES</h1><h1>ARTICLES</h1><h1>ARTICLES</h1><h1>ARTICLES</h1><h1>ARTICLES</h1><h1>ARTICLES</h1>
 
-    <ul id="articles"></ul>
+    <div id="a-comment">
+    </div>
+  </div>
 
-  </section>
+
 
   <!-- footer -->
   <footer class="section">
@@ -68,7 +53,74 @@
   </a>
   <!-- javascript -->
   <script src="../js/main.js"></script>
+  <script>
+    var _id = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
+    _id = _id.slice(1,)
 
+    const url = `https://sergenm-brand.herokuapp.com/articles/${_id}`;
+
+    ////////////////////
+    //FETCH ARTICLE  //
+    ///////////////////
+    const articleContent = document.querySelector('.blog-viewer');
+    fetch(url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((article) => {
+
+        // var img_ = document.createElement('img');
+        // img_.src = img;
+        // showImg.appendChild(img_);
+
+        const addArticle =
+          `<h1>${article.title}</h1>
+              <div>
+                <img src=${article.image} alt="image">
+              </div>
+              <div>
+                <p>${article.body}</p>
+              </div>`
+
+        articleContent.insertAdjacentHTML('afterbegin', addArticle);
+
+      })
+
+
+
+    ////////////////////
+    //FETCH COMMENTS  //
+    ///////////////////
+    const url2 = `https://sergenm-brand.herokuapp.com/comments/article/${_id}`
+    const aComment = document.querySelector('#a-comment');
+    fetch(url2)
+      .then((response) => {
+        return response.json();
+      })
+      .then((comment) => {
+
+        // var img_ = document.createElement('img');
+        // img_.src = img;
+        // showImg.appendChild(img_);
+        comment.map(function (comment) {
+          console.log(comment)
+          const addArticle =
+            ` <div class="all-comments">
+            <p> ${comment.user.username} <p/>  :  
+             <h4>  ${comment.comment} </h4>`
+
+          aComment.insertAdjacentHTML('afterbegin', addArticle);
+        })
+
+      })
+
+    ////////////////////
+    //POST COMMENT  //
+    ///////////////////
+    const newComment = document.getElementById("form-new-comment");
+    newArticleForm.addEventListener("submit", handleFormSubmit);
+    
+  </script>
 
 </body>
 

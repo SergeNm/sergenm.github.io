@@ -205,7 +205,7 @@ p {
 }
 
 .btn:hover {
-  background: rgba(red, green, blue, 0.8);
+  background: #3089DB;
 
   color: var(--clr-white);
 }
@@ -749,8 +749,7 @@ form {
 
 .post-image {
   height: 150px;
-  background-repeat: no-repeat;
-  background-position: center;
+  object-fit: cover;
   background-size: cover;
 }
 
@@ -1194,3 +1193,53 @@ user agent stylesheet
 #admin-menu{
   padding-top: 0.5em;
 }
+
+
+/* manage.html */
+.article-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.article-container{
+  display: flex;
+  width:65%;
+  color: #ECECEC;
+}
+
+
+
+.article-img{
+  max-height: 200px;
+  max-width: 400px;
+  object-fit: cover;
+}
+
+.article-left, .article-aside{
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+/* --------------------------------- */
+
+/* BLOG PAGE */
+.blog-viewer, .comment-viewer{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 5em;
+  flex-direction: column;
+}
+
+/* comments */
+.all-comments, #add-comment, #form-new-comment{
+  display: flex;
+  align-items: center;
+  gap: 3em;
+}
+ #add-comment textarea{
+  min-width: 300px;
+ }
