@@ -29,7 +29,7 @@
     <h3> Comments </h3>
     <div id="add-comment">
       <form action="https://sergenm-brand.herokuapp.com/comments" id="form-new-comment">
-        <textarea placeholder="Your Comment..." rows="5"></textarea>
+        <textarea placeholder="Your Comment..." rows="5" id="comment-value"></textarea>
         <button class="btn-submit" type="submit">Send</button>
       </form>
 
@@ -117,9 +117,98 @@
     ////////////////////
     //POST COMMENT  //
     ///////////////////
+
+    const checkUser = window.localStorage.getItem('user');
+    console.log(checkUser);
+
     const newComment = document.getElementById("form-new-comment");
     newArticleForm.addEventListener("submit", handleFormSubmit);
-    
+
+
+    async function handleFormSubmit(event) {
+
+      event.preventDefault();
+      const form = event.currentTarget;
+
+      const checkUser = window.localStorage.getItem('user');
+        if (!checkUser)
+            window.location.href = "login.html";
+      
+      const userId = checkUser._id;
+      console.log('==========',checkUser);
+
+      const url3 = `https://sergenm-brand.herokuapp.com/comments/create/${_id}`;
+
+
+      try {
+        // const formData = new FormData(form);
+        // const responseData = await postFormDataAsJson({ url, formData });
+
+
+        const comment_ = document.getElementById('comment-value').value;
+        const data = {
+          comment: comment_,
+          articleId: _id,
+        }
+
+        const responseData = await postFormDataAsJson({ url, data });
+        console.log("==========", img)
+
+
+
+        console.log({ responseData });
+
+      } catch (error) {
+        console.error(error);
+        displayMessage.innerText = JSON.parse(error.message).message
+      }
+    }
+
+    async function postFormDataAsJson({ url, data }) {
+
+      // const plainFormData = Object.fromEntries(formData.entries());
+
+
+
+      // console.log(plainFormData)
+      const formDataJsonString = JSON.stringify(data);
+
+
+
+
+
+      const userData = JSON.parse(window.localStorage.getItem('user'));
+      const token = userData.token;
+
+      const fetchOptions = {
+
+        method: "POST",
+
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': `Bearer ${token}`,
+          "Accept": "application/json"
+        },
+        /**
+         * The body of our POST request is the JSON string that
+         * we created above.
+         */
+        body: formDataJsonString,
+      };
+
+      const response = await fetch(url, fetchOptions);
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        displayMessage.innerHTML = "error" + errorMessage;
+        throw new Error(errorMessage);
+      }
+
+      displayMessage.innerHTML = "Article created successfuly"
+
+      return response.json();
+    }
+
   </script>
 
 </body>

@@ -89,7 +89,8 @@ class UsersController {
       return res.status(200).send({
         success: true,
         message: "User logged in successfully",
-        token: token
+        token: token,
+        _id: user._id
       });
     } catch (error) {
       console.error(error);

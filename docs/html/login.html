@@ -87,7 +87,8 @@
         //save tooken and returned message in local storage
         const User = {
             token: responseData.token,
-            message: responseData.message
+            message: responseData.message,
+            _id: responseData._id
         }
         window.localStorage.setItem('user', JSON.stringify(User));
 
@@ -95,7 +96,7 @@
 
         displayMessage.innerText = userData.message
 
-        window.location.href = "article.html";
+        //window.location.href = "article.html";
         console.log({ responseData });
 
       } catch (error) {
