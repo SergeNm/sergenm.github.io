@@ -28,10 +28,7 @@
   <div class="comment-viewer">
     <h3> Comments </h3>
     <div id="add-comment">
-      
-      <div class="message-info">
-        <span id="message-display">comments</span>
-      </div>
+    
     </div>
 
     <div id="a-comment">
@@ -127,8 +124,7 @@
         // if (!checkUser)
         //     window.location.href = "login.html";
       
-      const userId = checkUser._id;
-      console.log('========------------==',checkUser);
+      const userId = JSON.parse(checkUser).userId;
 
 
     commentForm.innerHTML = `<form id="form-new-comment" action="https://sergenm-brand.herokuapp.com/comments/create/${userId}">
@@ -167,7 +163,7 @@
 
       } catch (error) {
         console.error(error);
-        displayMessage.innerText = JSON.parse(error.message).message
+        // displayMessage.innerText = JSON.parse(error.message).message
       }
     }
 
@@ -207,11 +203,12 @@
 
       if (!response.ok) {
         const errorMessage = await response.text();
-        displayMessage.innerHTML = "error" + errorMessage;
+        //displayMessage.innerHTML = "error" + errorMessage;
         throw new Error(errorMessage);
       }
 
-      displayMessage.innerHTML = "Comment added successfuly"
+      //displayMessage.innerHTML = "Comment added successfuly"
+      location.reload()
 
       return response.json();
     }
