@@ -90,7 +90,7 @@ class UsersController {
         success: true,
         message: "User logged in successfully",
         token: token,
-        _id: user._id
+        userId: user._id
       });
     } catch (error) {
       console.error(error);

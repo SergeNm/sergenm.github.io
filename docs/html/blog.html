@@ -28,14 +28,15 @@
   <div class="comment-viewer">
     <h3> Comments </h3>
     <div id="add-comment">
-      <form action="https://sergenm-brand.herokuapp.com/comments" id="form-new-comment">
-        <textarea placeholder="Your Comment..." rows="5" id="comment-value"></textarea>
-        <button class="btn-submit" type="submit">Send</button>
-      </form>
-
+      
+      <div class="message-info">
+        <span id="message-display">comments</span>
+      </div>
     </div>
 
     <div id="a-comment">
+
+
     </div>
   </div>
 
@@ -119,26 +120,34 @@
     ///////////////////
 
     const checkUser = window.localStorage.getItem('user');
-    console.log(checkUser);
+
+    const displayMessage = document.getElementById("message-display")
+    const commentForm = document.getElementById("add-comment");
+
+        // if (!checkUser)
+        //     window.location.href = "login.html";
+      
+      const userId = checkUser._id;
+      console.log('========------------==',checkUser);
+
+
+    commentForm.innerHTML = `<form id="form-new-comment" action="https://sergenm-brand.herokuapp.com/comments/create/${userId}">
+        <textarea placeholder="Your Comment..." rows="5" id="comment-value"></textarea>
+        <button class="btn-submit" type="submit">Send</button>
+      </form>`
 
     const newComment = document.getElementById("form-new-comment");
-    newArticleForm.addEventListener("submit", handleFormSubmit);
+    newComment.addEventListener("submit", handleFormSubmit);
 
 
     async function handleFormSubmit(event) {
 
       event.preventDefault();
       const form = event.currentTarget;
+      const url3 = form.action;
+      console.log(url3)
 
-      const checkUser = window.localStorage.getItem('user');
-        if (!checkUser)
-            window.location.href = "login.html";
-      
-      const userId = checkUser._id;
-      console.log('==========',checkUser);
-
-      const url3 = `https://sergenm-brand.herokuapp.com/comments/create/${_id}`;
-
+    
 
       try {
         // const formData = new FormData(form);
@@ -151,9 +160,7 @@
           articleId: _id,
         }
 
-        const responseData = await postFormDataAsJson({ url, data });
-        console.log("==========", img)
-
+        const responseData = await postFormDataAsJson({ url3, data });
 
 
         console.log({ responseData });
@@ -164,7 +171,7 @@
       }
     }
 
-    async function postFormDataAsJson({ url, data }) {
+    async function postFormDataAsJson({ url3, data }) {
 
       // const plainFormData = Object.fromEntries(formData.entries());
 
@@ -196,7 +203,7 @@
         body: formDataJsonString,
       };
 
-      const response = await fetch(url, fetchOptions);
+      const response = await fetch(url3, fetchOptions);
 
       if (!response.ok) {
         const errorMessage = await response.text();
@@ -204,7 +211,7 @@
         throw new Error(errorMessage);
       }
 
-      displayMessage.innerHTML = "Article created successfuly"
+      displayMessage.innerHTML = "Comment added successfuly"
 
       return response.json();
     }
