@@ -84,16 +84,16 @@ describe("GET Articles", (req, res) => {
       .catch((err) => done(err));
   });
 
-  it("should return specific article", (done) => {
-    request(app)
-      .get("/articles/620f2f3975c60b121940e61b")
-      .expect(200)
-      .then((res) => {
-        expect(res.body).to.be.an('object').has.property("title").eql("The admin article");
-        done();
-      })
-      .catch((err) => done(err));
-  });
+  // it("should return specific article", (done) => {
+  //   request(app)
+  //     .get("/articles/620f2f3975c60b121940e61b")
+  //     .expect(200)
+  //     .then((res) => {
+  //       expect(res.body).to.be.an('object').has.property("title").eql("The admin article");
+  //       done();
+  //     })
+  //     .catch((err) => done(err));
+  // });
 
 });
 
