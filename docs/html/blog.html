@@ -21,23 +21,33 @@
   </div>
 
   <!-- BLOG POST -->
-  <div class="blog-viewer">
+  <div style="display: flex; justify-content: center;"> <div class="blog-viewer"> </div>
+  
 
   </div>
 
   <div class="comment-viewer">
-    <h3> Comments </h3>
-    <div id="add-comment">
-    
-    </div>
-
-    <div id="a-comment">
-
-
+    <h2 class="R-title">Comments</h2>
+    <div class="comment-section">
+      
+      <div style="width:100%; padding-left:25%;" >
+        <div id="add-comment">
+        </div>
+      </div>
+      
+      
+      <div class="">
+        <div class="review">
+  
+          <div class="aComment">
+            
+          </div>
+  
+        </div>
+      </div>
     </div>
   </div>
-
-
+ 
 
   <!-- footer -->
   <footer class="section">
@@ -90,7 +100,7 @@
     //FETCH COMMENTS  //
     ///////////////////
     const url2 = `https://sergenm-brand.herokuapp.com/comments/article/${_id}`
-    const aComment = document.querySelector('#a-comment');
+    const aComment = document.querySelector('.aComment');
     fetch(url2)
       .then((response) => {
         return response.json();
@@ -102,12 +112,19 @@
         // showImg.appendChild(img_);
         comment.map(function (comment) {
           console.log(comment)
-          const addArticle =
-            ` <div class="all-comments">
-            <p> ${comment.user.username} <p/>  :  
-             <h4>  ${comment.comment} </h4>`
+          const addComment =
+            ` <div class="media media-review">
+              
+              <div class="media-body">
+                <div class="M-flex">
+                  <h2 class="title"><span> ${comment.user.username} </span>${new Date(comment.updatedAt).toUTCString()}</h2>
+                </div>
+                <div class="description">${comment.comment}</div>
+              </div>
+              <div class="media-user"><h2>M.S<h2></div>
+            </div>`
 
-          aComment.insertAdjacentHTML('afterbegin', addArticle);
+          aComment.insertAdjacentHTML('afterbegin', addComment);
         })
 
       })
@@ -121,16 +138,16 @@
     const displayMessage = document.getElementById("message-display")
     const commentForm = document.getElementById("add-comment");
 
-        // if (!checkUser)
-        //     window.location.href = "login.html";
-      
-      const userId = JSON.parse(checkUser).userId;
+    // if (!checkUser)
+    //     window.location.href = "login.html";
+
+    const userId = JSON.parse(checkUser).userId;
 
 
-    commentForm.innerHTML = `<form id="form-new-comment" action="https://sergenm-brand.herokuapp.com/comments/create/${userId}">
+    commentForm.innerHTML = `<div style="padding-bottom:50px;"><form id="form-new-comment" action="https://sergenm-brand.herokuapp.com/comments/create/${userId}">
         <textarea placeholder="Your Comment..." rows="5" id="comment-value"></textarea>
-        <button class="btn-submit" type="submit">Send</button>
-      </form>`
+        <button id="post-btn" type="submit">Post</button>
+      </form></div>`
 
     const newComment = document.getElementById("form-new-comment");
     newComment.addEventListener("submit", handleFormSubmit);
@@ -143,7 +160,7 @@
       const url3 = form.action;
       console.log(url3)
 
-    
+
 
       try {
         // const formData = new FormData(form);
