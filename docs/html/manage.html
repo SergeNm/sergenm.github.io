@@ -131,10 +131,7 @@
 
             const articleId = event.currentTarget.myParam;
 
-            event.preventDefault();
             const url = `https://sergenm-brand.herokuapp.com/articles/${articleId}`;
-
-            console.log("00000000000000000000000000000000000",token);
 
             try {
                 const fetchOptions = {
@@ -144,7 +141,7 @@
                         'Authorization': `Bearer ${token}`,
                         "Accept": "application/json"
                     },
-                    body: articleId,
+                    body: "",
                 };
 
                 const response = await fetch(url, fetchOptions);
