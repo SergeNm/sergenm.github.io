@@ -57,7 +57,7 @@ class ArticlesController {
             const removedArticle = await Article.deleteOne(article, (err, docs) => {
                 if (err) res.json({ message: err })
                 else res.json(removedArticle)
-            })
+            }).clone().catch(function (err) { console.log(err) })
         }
     
 
