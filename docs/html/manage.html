@@ -75,13 +75,8 @@
         })
 
         //GLOBAL
-        let articleId;
-        const setArticleId = function (id) {
-            articleId = id;
-        }
-        const getArticleId = function () {
-            return articleId;
-        }
+        const userData = JSON.parse(window.localStorage.getItem('user'));
+        const token = userData.token;
 
         ////////////////////
         //FETCH ARTICLES  //
@@ -134,13 +129,12 @@
 
         async function handleDelete(event) {
 
-            const articleId_ = event.currentTarget.myParam;
+            const articleId = event.currentTarget.myParam;
 
             event.preventDefault();
             const url = `https://sergenm-brand.herokuapp.com/articles/${articleId}`;
-            
-            const userData = JSON.parse(window.localStorage.getItem('user'));
-            const token = userData.token;
+
+            console.log("00000000000000000000000000000000000",token);
 
             try {
                 const fetchOptions = {
@@ -148,7 +142,7 @@
                     headers: {
                         'Content-Type': 'application/json; charset=UTF-8',
                         'Authorization': `Bearer ${token}`,
-                        "Accept": "application/json",
+                        "Accept": "application/json"
                     },
                     body: articleId,
                 };
