@@ -47,7 +47,8 @@ class ArticlesController {
     async deleteOneArticle(req, res) {
 
         try {
-            const removedArticle = await Article.deleteOne({ _id: req.params.articleId }, (err, docs) => {
+            const article = await Article.findById(req.params.articleId);
+            const removedArticle = await Article.deleteOne(article, (err, docs) => {
                 if (err) res.json({ message: err })
                 else res.json(removedArticle)
             })
