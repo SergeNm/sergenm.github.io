@@ -69,7 +69,7 @@ class ArticlesController {
 
         await Article.updateOne(
             { _id: req.params.articleId },
-            { $set: { body: req.body.body, title: req.body.title } },
+            { $set: { body: req.body.body, title: req.body.title, image: req.body.image } },
             (err, docs) => {
                 if (err) res.json({ message: err })
                 else res.json({ message: "Updated Successfully" });

@@ -116,11 +116,11 @@
                     <div class="article-aside">
                         ${article.body}
                         <div class="article-btn">
-                            <button class="btn-admin" style="color: rgb(190, 248, 197);"><i class="fa fa-edit"></i>
-                                Edit</button>
+                            <a href="editArticle.html?${article._id}" class="btn-admin" style="color: rgb(190, 248, 197);"><i class="fa fa-edit"></i>
+                                Edit </a>
                             <button class="btn-admin" id="delete-btn" style="color: rgb(255, 181, 181);"><i class="fa fa-edit"></i>
                                 Delete</button>
-                            <input type="text" style="display:none;" id="article-id" value="${article._id}">
+                            
                         </div>
                     </div>
 

@@ -23,7 +23,7 @@
   <!-- New Article -->
 
   <div class="title">
-    <h2>Create<span> New Article</span> </h2>
+    <h2>Update<span> Article</span> </h2>
   </div>
   <div class="page-content">
 
@@ -66,6 +66,9 @@
   <script src="../js/main.js"></script>
 
   <script>
+
+    var _id = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
+    _id = _id.slice(1,);
 
     const newArticleForm = document.getElementById("form-new-article");
 
@@ -121,13 +124,10 @@
 
       event.preventDefault();
       const form = event.currentTarget;
+      form.action= form.action + `/${_id}`;
       const url = form.action;
 
       try {
-        // const formData = new FormData(form);
-        // const responseData = await postFormDataAsJson({ url, formData });
-
-
         const title = document.getElementById('title').value;
         const content = document.getElementById('body').value
         const data = {
@@ -135,12 +135,7 @@
           body: content,
           image: img
         }
-
         const responseData = await postFormDataAsJson({ url, data });
-        console.log("==========",img)
-
-
-
         console.log({ responseData });
 
       } catch (error) {
@@ -167,7 +162,7 @@
 
       const fetchOptions = {
 
-        method: "POST",
+        method: "PATCH",
 
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
