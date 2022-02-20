@@ -13,10 +13,12 @@
 
 <body>
     <div id="admin-menu">
-        <button class="btn-admin"><i class="fa fa-plus"></i> <a href="article.html" style="color: #ccc;">Create New Article</a> </button>
+        <button class="btn-admin"><i class="fa fa-plus"></i> <a href="article.html" style="color: #ccc;">Create New
+                Article</a> </button>
         <button class="btn-admin"><i class="fa fa-user"></i> Profile</button>
         <button class="btn-admin"><i class="fa fa-cog"></i> Setting</button>
-        <button class="btn-admin"><i class="fa fa-home"></i> <a href="../index.html" style="color: #fff;">Home</a></button>
+        <button class="btn-admin"><i class="fa fa-home"></i> <a href="../index.html"
+                style="color: #fff;">Home</a></button>
         <button class="btn-admin" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
     </div>
 
@@ -28,7 +30,7 @@
     <div class="page-content">
         <div class="manage-article">
             <div class="article-content">
-                
+
                 <!-- <div class="article-container">
                     <div class="article-left"> <img class="article-img" src="../images/SERGE.JPG"></div>
                     <div class="article-aside">
@@ -72,6 +74,15 @@
             window.location.href = "login.html";
         })
 
+        //GLOBAL
+        let articleId;
+        const setArticleId = function (id) {
+            articleId = id;
+        }
+        const getArticleId = function () {
+            return articleId;
+        }
+
         ////////////////////
         //FETCH ARTICLES  //
         ///////////////////
@@ -95,16 +106,152 @@
                         <div class="article-btn">
                             <button class="btn-admin" style="color: rgb(190, 248, 197);"><i class="fa fa-edit"></i>
                                 Edit</button>
-                            <button class="btn-admin" style="color: rgb(255, 181, 181);"><i class="fa fa-edit"></i>
+                            <button class="btn-admin" id="delete-btn" style="color: rgb(255, 181, 181);"><i class="fa fa-edit"></i>
                                 Delete</button>
+                            <input type="text" style="display:none;" id="article-id" value="${article._id}">
                         </div>
                     </div>
 
                 </div>`
 
                     articleContent.insertAdjacentHTML('afterbegin', addArticle);
+
+                    const deleteBtn = document.getElementById("delete-btn");
+
+
+                    deleteBtn.addEventListener('click', handleDelete, false);
+
+                    deleteBtn.myParam = article._id;
+
                 })
             })
+
+
+        //////////////////
+        //DELETE ARTICLES //
+        /////////////////
+
+
+        async function handleDelete(event) {
+
+            const articleId_ = event.currentTarget.myParam;
+
+            event.preventDefault();
+            const url = `https://sergenm-brand.herokuapp.com/articles/${articleId}`;
+            
+            const userData = JSON.parse(window.localStorage.getItem('user'));
+            const token = userData.token;
+
+            try {
+                const fetchOptions = {
+                    method: "DELETE",
+                    headers: {
+                        'Content-Type': 'application/json; charset=UTF-8',
+                        'Authorization': `Bearer ${token}`,
+                        "Accept": "application/json",
+                    },
+                    body: articleId,
+                };
+
+                const response = await fetch(url, fetchOptions);
+
+                if (!response.ok) {
+                    const errorMessage = await response.text();
+                    throw new Error(errorMessage);
+                }
+
+                return response.json();
+            } catch (error) {
+                console.log(error)
+            }
+
+
+
+
+
+            //         const formData = new FormData(form);
+            //         const responseData = await postFormDataAsJson({ url, formData });
+
+            //         //save tooken and returned message in local storage
+            //         const User = {
+            //             token: responseData.token,
+            //             message: responseData.message
+            //         }
+            //         window.localStorage.setItem('user', JSON.stringify(User));
+
+            //         const userData = JSON.parse(window.localStorage.getItem('user'));
+
+            //         displayMessage.innerText = userData.message
+
+            //         window.location.href = "manage.html";
+            //         console.log({ responseData });
+
+            //     } catch (error) {
+            //         console.log(error.message);
+            //         displayMessage.innerText = JSON.parse(error.message).message
+            //     }
+            // }
+
+            // async function postFormDataAsJson({ url, formData }) {
+
+            //     const plainFormData = Object.fromEntries(formData.entries());
+            //     const formDataJsonString = JSON.stringify(plainFormData);
+
+
+            //     const fetchOptions = {
+            //         method: "POST",
+            //         headers: {
+            //             'Content-Type': 'application/json; charset=UTF-8',
+            //             "Accept": "application/json"
+            //         },
+            //         body: formDataJsonString,
+            //     };
+
+            //     const response = await fetch(url, fetchOptions);
+
+            //     if (!response.ok) {
+            //         const errorMessage = await response.text();
+            //         throw new Error(errorMessage);
+            //     }
+
+            //     return response.json();
+        }
+
+
+
+
+
+        // const loginForm = document.getElementById("login-form-data");
+        // loginForm.addEventListener("submit", handleFormSubmit);
+
+        // const displayMessage = document.getElementById("message-display")
+        // const adminMenu = document.getElementById('admin-menu');
+        // const logoutButton = document.getElementById('logout-btn');
+
+
+
+        // logoutButton.addEventListener('click', (e) => {
+        //     window.localStorage.removeItem('user');
+        //     location.reload()
+        // })
+
+        // // let request = new Request(url, {
+        // //   method: 'POST',
+        // //   body: JSON.stringify(data),
+        // //   headers: new Headers({
+        // //     'Content-Type': 'application/json; charset=UTF-8',
+        // //     // 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTY0NDMzNDc2Mn0.3tutNY_Qefk-6btiGQazuFVaQxn8tdeDFo4imdkJcAw'
+        // //   })
+        // // });
+
+        // // fetch(request)
+        // //   .then(function (res) {
+        // //     // Handle response you get from the API
+        // //     res.json().then(data => console.log(data))
+        // //   });
+
+
+
     </script>
 
 </body>

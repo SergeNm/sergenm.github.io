@@ -46,10 +46,15 @@ class ArticlesController {
     //delete a specific contact
     async deleteOneArticle(req, res) {
 
-        const removedArticle = await Article.deleteOne({ _id: req.params.articleId }, (err, docs) => {
-            if (err) res.json({ message: err })
-            else res.json(removedArticle)
-        })
+        try {
+            const removedArticle = await Article.deleteOne({ _id: req.params.articleId }, (err, docs) => {
+                if (err) res.json({ message: err })
+                else res.json(removedArticle)
+            })
+        } catch (error) {
+            res.json({ message: error })
+        }
+
 
     }
 
