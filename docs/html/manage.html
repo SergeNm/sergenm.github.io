@@ -42,7 +42,7 @@
         </div>
     </div>
 
-
+    <div id="loading"> </div>
 
     <!-- footer -->
     <footer class="section">
@@ -78,10 +78,27 @@
         const userData = JSON.parse(window.localStorage.getItem('user'));
         const token = userData.token;
 
+        // selecting loading div
+        const loader = document.querySelector("#loading");
+        // showing loading
+        function displayLoading() {
+            loader.classList.add("display");
+            // to stop loading after some time
+            setTimeout(() => {
+                loader.classList.remove("display");
+            }, 5000);
+        }
+        // hiding loading 
+        function hideLoading() {
+            loader.classList.remove("display");
+        }
+        
+
         ////////////////////
         //FETCH ARTICLES  //
         ///////////////////
         const articleContent = document.querySelector('.article-content');
+        displayLoading();
         fetch(url)
             .then((response) => {
                 return response.json();
@@ -118,6 +135,8 @@
 
                     deleteBtn.myParam = article._id;
 
+                    hideLoading();
+
                 })
             })
 
@@ -150,7 +169,7 @@
                     const errorMessage = await response.text();
                     throw new Error(errorMessage);
                 }
-
+                location.reload()
                 return response.json();
             } catch (error) {
                 console.log(error)
