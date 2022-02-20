@@ -27,9 +27,7 @@
   </div>
   <div class="page-content">
 
-    <div id="showImg">
-      
-    </div>
+ 
 
 
     <form action="https://sergenm-brand.herokuapp.com/articles" id="form-new-article" class="decor form">
@@ -45,7 +43,10 @@
         <input name="title" id="title" type="text" placeholder="TITLE">
         <label for="body"></label>
         <textarea name="body" id="body" placeholder="CONTENT" rows="5"></textarea>
-        <label for="image">Add Image:</label>
+        <label for="image">Update Image:</label>
+        <div style="max-width: 100px;" id="showImg">
+      
+        </div>
         <input type="file" id="image" name="image" accept="image/png, image/jpeg" multiple>
         <button class="btn-submit" type="submit" href="/">Submit</button>
       </div>
@@ -71,9 +72,34 @@
     _id = _id.slice(1,);
 
     const newArticleForm = document.getElementById("form-new-article");
-
-  
     newArticleForm.addEventListener("submit", handleFormSubmit);
+
+    ////////////////////
+    //FETCH ARTICLE  //
+    ///////////////////
+    const titleField = document.getElementById("title");
+    const contentField = document.getElementById("body");
+    const imageField = document.getElementById("image");
+    const fetchUrl = `https://sergenm-brand.herokuapp.com/articles/${_id}`
+
+    fetch(fetchUrl)
+      .then((response) => {
+        return response.json();
+      })
+      .then((article) => {
+
+        var img_ = document.createElement('img');
+        img_.src = article.image;
+        showImg.appendChild(img_);
+
+        titleField.value = article.title;
+        contentField.value = article.body;
+
+      }) 
+
+    ////////////////////
+    //UPDATE ARTICLE  //
+    ///////////////////
 
     // file upload
     let img;
@@ -101,9 +127,7 @@
 
 
     const displayMessage = document.getElementById("message-display")
-
     const checkUser = window.localStorage.getItem('user');
-
     const showImg = document.getElementById('showImg')
 
     
@@ -147,16 +171,8 @@
     async function postFormDataAsJson({ url, data }) {
 
      // const plainFormData = Object.fromEntries(formData.entries());
-
-      
-      
       // console.log(plainFormData)
       const formDataJsonString = JSON.stringify(data);
-
-    
-      
-     
-
       const userData = JSON.parse(window.localStorage.getItem('user'));
       const token = userData.token;
 

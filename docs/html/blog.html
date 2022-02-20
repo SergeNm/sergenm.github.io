@@ -28,6 +28,7 @@
 
   <div class="comment-viewer">
     <h2 class="R-title">Comments</h2>
+    <h4 id="req-sign"></h4>
     <div class="comment-section">
       
       <div style="width:100%; padding-left:25%;" >
@@ -138,8 +139,14 @@
     const displayMessage = document.getElementById("message-display")
     const commentForm = document.getElementById("add-comment");
 
-    // if (!checkUser)
-    //     window.location.href = "login.html";
+    const reqLogin = document.getElementById("req-sign");
+    const reqLink = document.createElement('a');
+    reqLink.href = 'login.html?blog';
+    reqLink.innerHTML = "Please <u>Login</u> to comment"
+    
+       if (!checkUser)
+       reqLogin.appendChild(reqLink)
+        
 
     const userId = JSON.parse(checkUser).userId;
 
@@ -192,9 +199,6 @@
 
       // console.log(plainFormData)
       const formDataJsonString = JSON.stringify(data);
-
-
-
 
 
       const userData = JSON.parse(window.localStorage.getItem('user'));

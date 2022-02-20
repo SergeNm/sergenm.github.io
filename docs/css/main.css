@@ -170,6 +170,9 @@ p {
   padding: 1.5em 3em;
 } */
 
+.clr-light{
+  color: var(--clr-secondary);
+}
 .btn {
   text-transform: uppercase;
   background: transparent;
@@ -694,7 +697,7 @@ input, textarea {
 }
 
 .btn-submit:hover {
-  background: #3e4f24;
+  background: var(--clr-primary-2);
 }
 
 @media (min-width: 568px) {
@@ -1263,6 +1266,10 @@ user agent stylesheet
   margin-bottom: 10px;
   padding-left: 25%;
   text-transform: uppercase;
+}
+
+#req-sign {
+  padding-left: 25%;
 }
 
 .review{
